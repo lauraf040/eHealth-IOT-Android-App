@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Health_IoT_app</string>
+    <string name="splash_subtitle">Ai grijă de sănătatea ta astăzi!</string>
+    <string name="splash_title">INTRĂ, MEDICUL TE AȘTEAPTĂ!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_title">Ai deja un\nCont activ?\nLoghează-te!</string>
+    <string name="ai_uitat_parola">Ai uitat parola?</string>
+    <string name="utilizator_nou_creeaz_un_cont">Utilizator nou? Creează un cont.</string>
+    <string name="click_inregistreaza">Click pe + și înregistrează-te.</string>
+    <string name="login_btn">AUTENTIFICARE</string>
+    <string name="register_btn">Înregistrare</string>
+    <string name="newsApi_key">168d8d94275a42d687bd81951d869389</string>
+</resources>

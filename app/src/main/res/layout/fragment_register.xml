@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#F2F7FA"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    tools:context=".fragments.RegisterFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                >
+
+                <TextView
+                    android:id="@+id/tv_register"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/kronaoneregular"
+                    android:shadowColor="@color/md_theme_light_tertiary"
+                    android:shadowDx="1"
+                    android:shadowDy="15"
+                    android:shadowRadius="30"
+                    android:text="Primul pas\nÎnainte de a\nPătrunde în\nAplicație!"
+                    android:textColor="@color/md_theme_light_onPrimaryContainer"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_register"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_register"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/logo_transparent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_register"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardview_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:outlineAmbientShadowColor="@color/md_theme_light_tertiary"
+                android:outlineSpotShadowColor="@color/md_theme_light_tertiary"
+                app:cardBackgroundColor="#B6D3EB"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="10dp"
+                app:cardMaxElevation="15dp"
+                app:cardPreventCornerOverlap="true"
+                app:strokeColor="#B6D3EB">
+                <!--            @color/md_theme_light_primaryContainer-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_name_register"
+                        style="@style/textInputStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+                        app:startIconDrawable="@drawable/name_icon"
+                        app:startIconTint="@color/md_theme_light_primary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tied_name_register"
+                            style="@style/textInputStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Name"
+                            android:inputType="textPersonName"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_email_register"
+                        style="@style/textInputStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+                        app:startIconDrawable="@drawable/email_icon"
+                        app:startIconTint="@color/md_theme_light_primary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tied_email_register"
+                            style="@style/textInputStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Email"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_age_register"
+                        style="@style/textInputStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+                        app:startIconDrawable="@drawable/age_icon"
+                        app:startIconTint="@color/md_theme_light_primary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tied_age_register"
+                            style="@style/textInputStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Age"
+                            android:inputType="number"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_phone_register"
+                        style="@style/textInputStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+                        app:startIconDrawable="@drawable/phone_icon"
+                        app:startIconTint="@color/md_theme_light_primary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tied_phone_register"
+                            style="@style/textInputStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Phone"
+                            android:inputType="textPersonName"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_password_register"
+                        style="@style/textInputStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+                        app:startIconDrawable="@drawable/passw_icon"
+                        app:startIconTint="@color/md_theme_light_primary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tied_password_register"
+                            style="@style/textInputStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/tv_signin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Already have an account?SIGN IN HERE"
+                    android:textAlignment="center"
+                    android:textColor="@color/md_theme_light_onPrimaryContainer"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:shadowColor="@color/md_theme_light_tertiary"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="40"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_register"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/bg_loginbutton"
+                    android:text="@string/register_btn"
+                    android:textColor="@color/md_theme_light_onSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/kronaoneregular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_signin"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
