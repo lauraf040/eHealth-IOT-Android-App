@@ -8,13 +8,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     private static final String BASE_URL = "http://10.0.2.2:3000/api/auth/";
+    private static final String NEWS_URL = "https://newsapi.org/v2/";
+
 
     public static Retrofit getRetrofit() {
+
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(BASE_URL)
@@ -23,7 +25,8 @@ public class ApiClient {
         return retrofit;
     }
 
-    public static ApiService getService(){
+
+    public static ApiService getService() {
         ApiService apiService = getRetrofit().create(ApiService.class);
         return apiService;
     }

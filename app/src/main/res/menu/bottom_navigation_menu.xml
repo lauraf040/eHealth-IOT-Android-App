@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home_item"
+        android:id="@+id/home_menu_item"
         android:enabled="true"
         android:icon="@drawable/home_icon"
         android:iconTint="@color/md_theme_light_primary"
-        android:title="Home"></item>
+        android:title="Home"></item>\
     <item
-        android:id="@+id/appointment_item"
+        android:id="@+id/doctors_menu_item"
+        android:enabled="true"
+        android:icon="@drawable/medical_icon"
+        android:iconTint="@color/md_theme_light_primary"
+        android:title="Profile"></item>
+    <item
+        android:id="@+id/appointments_menu_item"
         android:enabled="true"
         android:icon="@drawable/appointment_icon"
         android:iconTint="@color/md_theme_light_primary"
         android:title="App"></item>
     <item
-        android:id="@+id/profile_item"
+        android:id="@+id/profile_menu_item"
         android:enabled="true"
         android:icon="@drawable/profile_icon"
         android:iconTint="@color/md_theme_light_primary"
         android:title="Profile"></item>
     <item
-        android:id="@+id/settings_item"
+        android:id="@+id/settings_menu_item"
         android:enabled="true"
         android:icon="@drawable/settings_icon"
         android:iconTint="@color/md_theme_light_primary"

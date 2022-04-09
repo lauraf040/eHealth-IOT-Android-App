@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    app:cardCornerRadius="25dp"
     app:cardElevation="8dp">
 
     <LinearLayout
@@ -41,12 +42,15 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-        <ImageView
+
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_news"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
             android:src="@drawable/not_available"
-            android:scaleType="centerCrop"></ImageView>
+            app:shapeAppearanceOverlay="@style/roundedIv"
+            ></com.google.android.material.imageview.ShapeableImageView>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
