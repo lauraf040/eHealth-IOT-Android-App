@@ -1,4 +1,4 @@
-package com.example.health_iot_app.news;
+package com.example.health_iot_app.models;
 
 import java.io.Serializable;
 

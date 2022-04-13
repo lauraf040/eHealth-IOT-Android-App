@@ -1,9 +1,9 @@
-package com.example.health_iot_app.news;
+package com.example.health_iot_app.models;
 
 
 import java.io.Serializable;
 
-public class Articles implements Serializable {
+public class Article implements Serializable {
 
     private Source source = null;
     private String author;

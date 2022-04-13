@@ -1,4 +1,4 @@
-package com.example.health_iot_app.utils;
+package com.example.health_iot_app.models;
 
 public class CategoryRvModel {
     private int image;

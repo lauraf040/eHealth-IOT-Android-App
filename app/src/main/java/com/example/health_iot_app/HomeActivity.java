@@ -7,8 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.health_iot_app.fragments.DoctorDetailsFragment;
+import com.example.health_iot_app.fragments.DoctorsFragment;
 import com.example.health_iot_app.fragments.HomeFragment;
+import com.example.health_iot_app.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -39,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
                         currentFragment = new HomeFragment();
                         break;
                     case R.id.doctors_menu_item:
-                        currentFragment = new DoctorDetailsFragment();
+                        currentFragment = new DoctorsFragment();
                         break;
                     case R.id.profile_menu_item:
                         currentFragment = new ProfileFragment();
