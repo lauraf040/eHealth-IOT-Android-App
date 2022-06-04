@@ -1,11 +1,11 @@
 package com.example.health_iot_app;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.example.health_iot_app.fragments.DoctorsFragment;
 import com.example.health_iot_app.fragments.HomeFragment;
@@ -42,7 +42,13 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.doctors_menu_item:
                         currentFragment = new DoctorsFragment();
                         break;
+                    case R.id.appointments_menu_item:
+                        currentFragment = new ProfileFragment();
+                        break;
                     case R.id.profile_menu_item:
+                        currentFragment = new ProfileFragment();
+                        break;
+                    case R.id.settings_menu_item:
                         currentFragment = new ProfileFragment();
                         break;
                 }

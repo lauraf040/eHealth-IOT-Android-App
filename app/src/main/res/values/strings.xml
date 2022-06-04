@@ -11,4 +11,5 @@
     <string name="login_btn">AUTENTIFICARE</string>
     <string name="register_btn">Înregistrare</string>
     <string name="newsApi_key">168d8d94275a42d687bd81951d869389</string>
+    <string name="tv_pick_hour">Alege ora pentru programare:</string>
 </resources>

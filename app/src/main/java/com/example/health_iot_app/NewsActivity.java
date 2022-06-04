@@ -21,9 +21,9 @@ public class NewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news);
         webViewNews = findViewById(R.id.webview_news);
         intent = getIntent();
-//        url = intent.getStringExtra(HomeFragment.ARTICLE_KEY);
-//        webViewNews.loadUrl(url);
-//        webViewNews.getSettings().setJavaScriptEnabled(true);
-//        webViewNews.setWebViewClient(new WebViewClient());
+        url = intent.getStringExtra("url_web");
+        webViewNews.loadUrl(url);
+        webViewNews.getSettings().setJavaScriptEnabled(true);
+        webViewNews.setWebViewClient(new WebViewClient());
     }
 }

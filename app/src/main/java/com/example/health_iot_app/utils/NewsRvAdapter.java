@@ -2,6 +2,7 @@ package com.example.health_iot_app.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.health_iot_app.NewsActivity;
 import com.example.health_iot_app.R;
 import com.example.health_iot_app.models.Article;
 import com.squareup.picasso.Picasso;
@@ -26,9 +28,10 @@ public class NewsRvAdapter extends RecyclerView.Adapter<NewsRvAdapter.ViewHolder
     private OnItemClickListener onItemClickListener;
 
 
-    public NewsRvAdapter(List<Article> articles, Context context) {
+    public NewsRvAdapter(List<Article> articles, Context context, OnItemClickListener onItemClickListener) {
         this.articles = articles;
         this.context = context;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -56,12 +59,10 @@ public class NewsRvAdapter extends RecyclerView.Adapter<NewsRvAdapter.ViewHolder
             Picasso.get().load(articles.get(position).getUrlToImage())
                     .into(holder.ivNews);
         }
-
-        holder.cardViewNews.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
+        holder.cardViewNews.setOnClickListener((view) -> {
+            Intent intent = new Intent(context, NewsActivity.class);
+            intent.putExtra("url_web", articles.get(position).getUrl());
+            context.startActivity(intent);
         });
     }
 
@@ -70,15 +71,12 @@ public class NewsRvAdapter extends RecyclerView.Adapter<NewsRvAdapter.ViewHolder
         return articles.size();
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
+//    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+//        this.onItemClickListener = onItemClickListener;
+//    }
+//
 
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvNewsTitle;
         TextView tvNewsSource;
@@ -92,12 +90,13 @@ public class NewsRvAdapter extends RecyclerView.Adapter<NewsRvAdapter.ViewHolder
             tvNewsSource = itemView.findViewById(R.id.news_source);
             ivNews = itemView.findViewById(R.id.iv_news);
             cardViewNews = itemView.findViewById(R.id.cardview_news_item);
-            this.onItemClickListener = onItemClickListener;
+
         }
 
-        @Override
-        public void onClick(View view) {
-            onItemClickListener.onItemClick(view, getAbsoluteAdapterPosition());
-        }
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
 }

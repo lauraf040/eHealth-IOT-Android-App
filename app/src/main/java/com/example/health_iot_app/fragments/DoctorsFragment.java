@@ -1,17 +1,17 @@
 package com.example.health_iot_app.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.health_iot_app.R;
+import com.example.health_iot_app.models.CategoryRvModel;
 import com.example.health_iot_app.models.Doctor;
 import com.example.health_iot_app.network.ApiClient;
 import com.example.health_iot_app.utils.DoctorsRvAdapter;
@@ -23,34 +23,36 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-public class DoctorsFragment extends Fragment {
+public class DoctorsFragment extends Fragment implements DoctorsRvAdapter.OnDoctorListener {
+    private static final String CATEGORY_KEY = "CATEGORY_KEY";
 
     private RecyclerView doctorsRecycleView;
     private DoctorsRvAdapter doctorsRvAdapter;
-    private List<Doctor> doctors = new ArrayList<Doctor>();
+    private List<Doctor> doctors = new ArrayList<>();
+    private List<Doctor> filteredDoctors = new ArrayList<>();
+    private Fragment fragment;
+    private CategoryRvModel category;
+    private boolean filter = false;
 
     public DoctorsFragment() {
         // Required empty public constructor
     }
 
-
-//    public static DoctorsFragment newInstance(String param1, String param2) {
-//        DoctorsFragment fragment = new DoctorsFragment();
-//        Bundle args = new Bundle();
-////        args.putString(ARG_PARAM1, param1);
-////        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
+    public static DoctorsFragment newInstance(CategoryRvModel category) {
+        DoctorsFragment fragment = new DoctorsFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(CATEGORY_KEY, category);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-////            mParam1 = getArguments().getString(ARG_PARAM1);
-////            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
+        if (getArguments() != null) {
+            category = (CategoryRvModel) getArguments().getSerializable(CATEGORY_KEY);
+            filter = true;
+        }
     }
 
     @Override
@@ -63,14 +65,22 @@ public class DoctorsFragment extends Fragment {
 
     private void initComponents(View view) {
         doctorsRecycleView = view.findViewById(R.id.recycler_doctors);
-        doctorsRvAdapter = new DoctorsRvAdapter(doctors);
-        doctorsRecycleView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-        doctorsRecycleView.setAdapter(doctorsRvAdapter);
+        if (filter) {
+            fetchDoctorsByCategory();
+            doctorsRvAdapter = new DoctorsRvAdapter(filteredDoctors, this);
+            doctorsRecycleView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+            doctorsRecycleView.setAdapter(doctorsRvAdapter);
+        } else {
+            fetchDoctors();
+            doctorsRvAdapter = new DoctorsRvAdapter(doctors, this);
+            doctorsRecycleView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+            doctorsRecycleView.setAdapter(doctorsRvAdapter);
+        }
 
-        fetchDoctors();
 
     }
 
+    //============================LOAD DOCTORS FROM SERVER=================================
     private void fetchDoctors() {
         ApiClient.getService().getDoctors().enqueue(new Callback<List<Doctor>>() {
             @Override
@@ -88,4 +98,39 @@ public class DoctorsFragment extends Fragment {
         });
     }
 
+    private void fetchDoctorsByCategory() {
+        ApiClient.getService().getDoctorsByCategory(category.getText()).enqueue(new Callback<List<Doctor>>() {
+            @Override
+            public void onResponse(Call<List<Doctor>> call, Response<List<Doctor>> response) {
+                if (response.isSuccessful()) {
+                    filteredDoctors.addAll(response.body());
+                    doctorsRvAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Doctor>> call, Throwable t) {
+                Toast.makeText(getContext(), "Error: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onDoctorClicked(int position) {
+        Doctor doctor;
+        if (filter) {
+            doctor = filteredDoctors.get(position);
+        } else {
+            doctor = doctors.get(position);
+        }
+        fragment = DoctorDetailsFragment.newInstance(doctor);
+        openFragment();
+    }
+
+    private void openFragment() {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameLayout_homePage, fragment)
+                .commit();
+    }
 }

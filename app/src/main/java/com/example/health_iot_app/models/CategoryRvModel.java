@@ -1,6 +1,8 @@
 package com.example.health_iot_app.models;
 
-public class CategoryRvModel {
+import java.io.Serializable;
+
+public class CategoryRvModel implements Serializable {
     private int image;
     private String text;
 

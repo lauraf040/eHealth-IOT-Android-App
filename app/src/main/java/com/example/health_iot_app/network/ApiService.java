@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -19,4 +20,7 @@ public interface ApiService {
 
     @GET("doctors/doctor")
     Call<List<Doctor>> getDoctors();
+
+    @GET("doctors/filteredDoctor")
+    Call<List<Doctor>> getDoctorsByCategory(@Query("category") String category);
 }

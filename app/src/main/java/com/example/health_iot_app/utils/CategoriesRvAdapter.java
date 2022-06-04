@@ -21,9 +21,11 @@ public class CategoriesRvAdapter extends RecyclerView.Adapter<CategoriesRvAdapte
 
     private List<CategoryRvModel> rvItems;
     int rowIndex = -1;
+    private SelectListener listener;
 
-    public CategoriesRvAdapter(List<CategoryRvModel> rvItems) {
+    public CategoriesRvAdapter(List<CategoryRvModel> rvItems, SelectListener listener) {
         this.rvItems = rvItems;
+        this.listener = listener;
     }
 
     @NonNull
@@ -33,7 +35,7 @@ public class CategoriesRvAdapter extends RecyclerView.Adapter<CategoriesRvAdapte
         LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
-        View itemView = inflater.inflate(R.layout.static_rv_item, parent, false);
+        View itemView = inflater.inflate(R.layout.category_list_item, parent, false);
 
         //return new holder instance
         ViewHolder viewHolder = new ViewHolder(itemView);
@@ -56,6 +58,7 @@ public class CategoriesRvAdapter extends RecyclerView.Adapter<CategoriesRvAdapte
             @Override
             public void onClick(View view) {
                 rowIndex = position;
+                listener.onItemClicked(rvItems.get(position));
                 notifyDataSetChanged();
             }
         });

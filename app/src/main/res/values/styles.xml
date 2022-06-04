@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorPrimaryDark">@color/md_theme_light_onSecondaryContainer</item>
         <item name="colorAccent">@color/md_theme_light_tertiary</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -54,6 +55,15 @@
 
     <style name="roundedIv" parent="parent">
         <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="home_doctor_cardview" parent="parent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomRight">25%</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
         <item name="cornerSize">50%</item>
     </style>
 </resources>

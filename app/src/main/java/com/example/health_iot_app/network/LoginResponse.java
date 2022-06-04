@@ -1,7 +1,5 @@
 package com.example.health_iot_app.network;
 
-import java.util.Date;
-
 public class LoginResponse {
 
     private String _id;
@@ -13,6 +11,7 @@ public class LoginResponse {
     private String updatedAt;
     private int __v;
     private String accessToken;
+
     public String get_id() {
         return _id;
     }
