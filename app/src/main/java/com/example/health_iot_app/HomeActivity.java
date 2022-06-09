@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import com.example.health_iot_app.fragments.DoctorsFragment;
 import com.example.health_iot_app.fragments.HomeFragment;
 import com.example.health_iot_app.fragments.ProfileFragment;
+import com.example.health_iot_app.fragments.SensorsDataFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -48,8 +49,8 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.profile_menu_item:
                         currentFragment = new ProfileFragment();
                         break;
-                    case R.id.settings_menu_item:
-                        currentFragment = new ProfileFragment();
+                    case R.id.sensors_menu_item:
+                        currentFragment = new SensorsDataFragment();
                         break;
                 }
                 openFragment();

@@ -12,4 +12,9 @@
     <string name="register_btn">Înregistrare</string>
     <string name="newsApi_key">168d8d94275a42d687bd81951d869389</string>
     <string name="tv_pick_hour">Alege ora pentru programare:</string>
+    <string name="room_temperature_content_description">Room Temperature</string>
+    <string name="temperatura_camerei">Temperatura camerei</string>
+    <string name="room_temp_default">23.5</string>
+    <string name="room_temp_unit">°C</string>
+    <string name="room_humidity_content_description">Room Humidity</string>
 </resources>

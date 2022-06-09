@@ -82,19 +82,30 @@ public class MakeAppointmentFragment extends Fragment {
         datePicker.getSelectedDate(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@Nullable Date date) {
+                times = new ArrayList<>();
                 if (date != null) {
                     Toast.makeText(getContext(),
                             date.toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                     if (doctor.getAppointments() != null) {
                         for (DoctorAppointmentSchedule appointment : doctor.getAppointments()) {
                             if (DateConverter.fromDate(date).equals(appointment.getDate())) {
                                 times = appointment.getTimes();
+                                break;
                             }
+                        }
+                        if (times != null) {
+                            addHours();
+                            for (String time : times) {
+                                hoursList.remove(time);
+                            }
+                            populateHoursRecyclerView(view);
+                        } else {
+                            addHours();
+                            populateHoursRecyclerView(view);
                         }
                     }
                 }
-                populateHoursRecyclerView(view);
             }
         });
     }
@@ -119,15 +130,10 @@ public class MakeAppointmentFragment extends Fragment {
         hoursList.add("17:30");
         hoursList.add("18:10");
         hoursList.add("18:50");
-        if (times != null) {
-            for (String time : times) {
-                hoursList.remove(time);
-            }
-        }
     }
 
     private void populateHoursRecyclerView(View view) {
-        addHours();
+
         hoursAdapter = new HoursAdapter(hoursList);
         rvAppointmentHours.setLayoutManager(new GridLayoutManager(view.getContext(), 3));
         rvAppointmentHours.setAdapter(hoursAdapter);

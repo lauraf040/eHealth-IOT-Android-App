@@ -140,15 +140,17 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/handwriting"
-                                    android:text="amdjkdkdkddkdkdkd"
-                                    android:textSize="18dp" />
+                                    android:text="STAI ACASĂ ȘI AI GRIJĂ DE TINE!"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/handwriting"
-                                    android:text="amdjkdkdkddkdkdkd"
-                                    android:textSize="20dp" />
+                                    android:text="Toți medicii pe care îi vei găsi sunt acreditați,\n deci nu ezita nicio secundă!\n In plus, faciliteaza procesul diagnosticarii\n si monitorizeaza-ti permanent starea!"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -161,7 +163,7 @@
                                     android:layout_marginTop="8dp"
                                     android:layout_marginBottom="10dp"
                                     app:shapeAppearanceOverlay="@style/home_doctor_cardview"
-                                    app:srcCompat="@drawable/home_cardview_doctor"></com.google.android.material.imageview.ShapeableImageView>
+                                    app:srcCompat="@drawable/heart_rate"></com.google.android.material.imageview.ShapeableImageView>
                             </LinearLayout>
 
                         </LinearLayout>

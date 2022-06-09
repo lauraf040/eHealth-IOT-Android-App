@@ -60,12 +60,9 @@ public class DefaultDoctorDetailsFragment extends Fragment implements OnMapReady
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_default_doctor_details, container, false);
-        if (map == null) {
-            supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_google_maps);
-            supportMapFragment.getMapAsync(this);
-        }
-
         initComponents(view);
+        supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_google_maps);
+        supportMapFragment.getMapAsync(this);
         return view;
     }
 
@@ -91,6 +88,7 @@ public class DefaultDoctorDetailsFragment extends Fragment implements OnMapReady
 
         fabAppointment = view.findViewById(R.id.default_fab_start_appointment);
         fabAppointment.setOnClickListener(openAppointmentFragmenClickListener());
+
     }
 
     //=======================================OPEN FRAGMENT=====================

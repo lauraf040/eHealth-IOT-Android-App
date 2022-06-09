@@ -37,6 +37,7 @@ public class HoursAdapter extends RecyclerView.Adapter<HoursAdapter.HoursViewHol
         return viewHolder;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull HoursAdapter.HoursViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String hour = hoursList.get(position);

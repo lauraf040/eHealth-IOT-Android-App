@@ -11,7 +11,7 @@
         android:enabled="true"
         android:icon="@drawable/medical_icon"
         android:iconTint="@color/md_theme_light_primary"
-        android:title="Profile"></item>
+        android:title="Doctors"></item>
     <item
         android:id="@+id/appointments_menu_item"
         android:enabled="true"
@@ -25,9 +25,9 @@
         android:iconTint="@color/md_theme_light_primary"
         android:title="Profile"></item>
     <item
-        android:id="@+id/settings_menu_item"
+        android:id="@+id/sensors_menu_item"
         android:enabled="true"
-        android:icon="@drawable/settings_icon"
+        android:icon="@drawable/sensors_icon"
         android:iconTint="@color/md_theme_light_primary"
-        android:title="Settings"></item>
+        android:title="Data"></item>
 </menu>

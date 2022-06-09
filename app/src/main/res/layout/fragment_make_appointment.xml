@@ -24,11 +24,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:baseColor="@color/md_theme_dark_onPrimary"
-                app:baseTextColor="@color/md_theme_light_primary"
+                app:baseTextColor="#8CC0DE"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:selectedColor="@color/md_theme_light_primary"
+                app:selectedColor="#DAEAF1"
                 app:selectedTextColor="@color/md_theme_dark_onPrimary"
                 app:showFullDate="true"
                 app:showTitle="true" />
@@ -41,7 +41,7 @@
                 android:text="@string/tv_pick_hour"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/day_date_picker"/>
+                app:layout_constraintTop_toBottomOf="@id/day_date_picker" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hour_picker_rv"
@@ -56,6 +56,19 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp"
+                android:padding="8dp"
+                android:text="Vreau o programare!"
+                android:textColor="@color/md_theme_dark_onPrimary"
+                android:textSize="24dp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hour_picker_rv" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
