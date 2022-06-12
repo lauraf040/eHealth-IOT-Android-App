@@ -77,7 +77,6 @@ public class DoctorsFragment extends Fragment implements DoctorsRvAdapter.OnDoct
             doctorsRecycleView.setAdapter(doctorsRvAdapter);
         }
 
-
     }
 
     //============================LOAD DOCTORS FROM SERVER=================================

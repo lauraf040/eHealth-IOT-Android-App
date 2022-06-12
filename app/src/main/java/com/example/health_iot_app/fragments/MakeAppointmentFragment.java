@@ -15,7 +15,7 @@ import com.example.health_iot_app.R;
 import com.example.health_iot_app.models.Doctor;
 import com.example.health_iot_app.models.DoctorAppointmentSchedule;
 import com.example.health_iot_app.utils.DateConverter;
-import com.example.health_iot_app.utils.HoursAdapter;
+import com.example.health_iot_app.utils.HoursRvAdapter;
 import com.harrywhewell.scrolldatepicker.DayScrollDatePicker;
 import com.harrywhewell.scrolldatepicker.OnDateSelectedListener;
 
@@ -28,7 +28,7 @@ public class MakeAppointmentFragment extends Fragment {
     private static final String DOCTOR_KEY = "DOCTOR_KEY";
     private DayScrollDatePicker datePicker;
     private RecyclerView rvAppointmentHours;
-    private HoursAdapter hoursAdapter;
+    private HoursRvAdapter hoursRvAdapter;
     private ArrayList<String> hoursList, freeHoursList;
     ArrayList<String> times = new ArrayList<>();
     private Doctor doctor = null;
@@ -134,9 +134,9 @@ public class MakeAppointmentFragment extends Fragment {
 
     private void populateHoursRecyclerView(View view) {
 
-        hoursAdapter = new HoursAdapter(hoursList);
+        hoursRvAdapter = new HoursRvAdapter(hoursList);
         rvAppointmentHours.setLayoutManager(new GridLayoutManager(view.getContext(), 3));
-        rvAppointmentHours.setAdapter(hoursAdapter);
-        hoursAdapter.notifyDataSetChanged();
+        rvAppointmentHours.setAdapter(hoursRvAdapter);
+        hoursRvAdapter.notifyDataSetChanged();
     }
 }

@@ -14,18 +14,18 @@ import com.example.health_iot_app.R;
 
 import java.util.ArrayList;
 
-public class HoursAdapter extends RecyclerView.Adapter<HoursAdapter.HoursViewHolder> {
+public class HoursRvAdapter extends RecyclerView.Adapter<HoursRvAdapter.HoursViewHolder> {
 
     private ArrayList<String> hoursList;
     private int selectedHour = -1;
 
-    public HoursAdapter(ArrayList<String> hoursList) {
+    public HoursRvAdapter(ArrayList<String> hoursList) {
         this.hoursList = hoursList;
     }
 
     @NonNull
     @Override
-    public HoursAdapter.HoursViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HoursRvAdapter.HoursViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -39,7 +39,7 @@ public class HoursAdapter extends RecyclerView.Adapter<HoursAdapter.HoursViewHol
 
 
     @Override
-    public void onBindViewHolder(@NonNull HoursAdapter.HoursViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull HoursRvAdapter.HoursViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String hour = hoursList.get(position);
         holder.tvHour.setText(hour);
         holder.tvHour.setOnClickListener(new View.OnClickListener() {
