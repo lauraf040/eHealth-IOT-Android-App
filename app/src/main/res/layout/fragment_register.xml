@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="#F2F7FA"
+    android:background="@color/white"
     android:focusableInTouchMode="true"
     android:gravity="center"
     tools:context=".fragments.RegisterFragment">
@@ -33,13 +33,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/kronaoneregular"
-                    android:shadowColor="@color/md_theme_light_tertiary"
-                    android:shadowDx="1"
-                    android:shadowDy="15"
-                    android:shadowRadius="30"
                     android:text="Primul pas\nÎnainte de a\nPătrunde în\nAplicație!"
-                    android:textColor="@color/md_theme_light_onPrimaryContainer"
-                    android:textSize="18sp"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/iv_register"
                     app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +45,7 @@
                     android:id="@+id/iv_register"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
+                    android:padding="8dp"
                     android:src="@drawable/logo_transparent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -62,11 +59,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:outlineAmbientShadowColor="@color/md_theme_light_tertiary"
-                android:outlineSpotShadowColor="@color/md_theme_light_tertiary"
-                app:cardBackgroundColor="#B6D3EB"
+                android:outlineAmbientShadowColor="#D3E8FA"
+                android:outlineSpotShadowColor="#B6D3EB"
+                app:cardBackgroundColor="@color/light_blue"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="10dp"
+                app:cardElevation="12dp"
                 app:cardMaxElevation="15dp"
                 app:cardPreventCornerOverlap="true"
                 app:strokeColor="#B6D3EB">
@@ -82,9 +79,9 @@
                         style="@style/textInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/loginViewsMargin"
-                        app:startIconDrawable="@drawable/name_icon"
-                        app:startIconTint="@color/md_theme_light_primary">
+                        android:layout_marginTop="10dp"
+                        app:startIconDrawable="@drawable/ic_user_profile"
+                        app:startIconTint="@color/primar_color">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tied_name_register"
@@ -101,9 +98,9 @@
                         style="@style/textInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/loginViewsMargin"
-                        app:startIconDrawable="@drawable/email_icon"
-                        app:startIconTint="@color/md_theme_light_primary">
+                        android:layout_marginTop="10dp"
+                        app:startIconDrawable="@drawable/ic_email"
+                        app:startIconTint="@color/primar_color">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tied_email_register"
@@ -120,9 +117,9 @@
                         style="@style/textInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/loginViewsMargin"
-                        app:startIconDrawable="@drawable/age_icon"
-                        app:startIconTint="@color/md_theme_light_primary">
+                        android:layout_marginTop="10dp"
+                        app:startIconDrawable="@drawable/ic_age"
+                        app:startIconTint="@color/primar_color">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tied_age_register"
@@ -139,9 +136,9 @@
                         style="@style/textInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/loginViewsMargin"
-                        app:startIconDrawable="@drawable/phone_icon"
-                        app:startIconTint="@color/md_theme_light_primary">
+                        android:layout_marginTop="10dp"
+                        app:startIconDrawable="@drawable/ic_phone"
+                        app:startIconTint="@color/primar_color">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tied_phone_register"
@@ -158,9 +155,10 @@
                         style="@style/textInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/loginViewsMargin"
-                        app:startIconDrawable="@drawable/passw_icon"
-                        app:startIconTint="@color/md_theme_light_primary">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        app:startIconDrawable="@drawable/ic_password"
+                        app:startIconTint="@color/primar_color">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tied_password_register"
@@ -184,35 +182,32 @@
                     android:id="@+id/tv_signin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Already have an account?SIGN IN HERE"
+                    android:fontFamily="@font/kronaoneregular"
+                    android:padding="8dp"
+                    android:text="Already have an account? SIGN IN HERE"
                     android:textAlignment="center"
-                    android:textColor="@color/md_theme_light_onPrimaryContainer"
-                    android:textSize="12sp"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="10sp"
                     android:textStyle="bold"
-                    android:shadowColor="@color/md_theme_light_tertiary"
-                    android:shadowDx="2"
-                    android:shadowDy="2"
-                    android:shadowRadius="40"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_register"
-                    android:layout_width="200dp"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bg_loginbutton"
+                    android:fontFamily="@font/kronaoneregular"
                     android:text="@string/register_btn"
-                    android:textColor="@color/md_theme_light_onSecondary"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/kronaoneregular"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_signin"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/tv_signin" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

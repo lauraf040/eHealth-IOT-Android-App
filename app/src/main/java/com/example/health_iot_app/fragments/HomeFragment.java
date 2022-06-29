@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -11,9 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.example.health_iot_app.R;
 import com.example.health_iot_app.models.Article;
 import com.example.health_iot_app.models.CategoryRvModel;
+import com.example.health_iot_app.models.UserModel;
 import com.example.health_iot_app.news.NewsApiClient;
 import com.example.health_iot_app.news.NewsApiResponse;
 import com.example.health_iot_app.utils.CategoriesRvAdapter;
@@ -31,6 +34,8 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment implements SelectListener {
 
     public static final String ARTICLE_KEY = "ARTICLE_KEY";
+    private static final String USER_ID = "USER_ID";
+
     private RecyclerView recyclerViewCategories, newsRecyclerView;
     private NewsRvAdapter newsRvAdapter;
     private CategoriesRvAdapter staticRvAdapter;
@@ -38,15 +43,28 @@ public class HomeFragment extends Fragment implements SelectListener {
     private List<Article> articles = new ArrayList<>();
     private NewsRvAdapter.OnItemClickListener clickListener;
     private Fragment fragment;
+    private TextView tvName;
+    private UserModel user;
 
     public HomeFragment() {
         // Required empty public constructor
+    }
+
+    public static HomeFragment newInstance(UserModel user) {
+        HomeFragment fragment = new HomeFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(USER_ID, user);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     //Fragment Logic
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            user = (UserModel) getArguments().getParcelable(USER_ID);
+        }
     }
 
     @Override
@@ -58,6 +76,12 @@ public class HomeFragment extends Fragment implements SelectListener {
     }
 
     private void initComponents(View view) {
+        tvName = view.findViewById(R.id.tv1_name);
+        if (user != null) {
+            if (user.getName() != null) {
+                tvName.setText(user.getName());
+            }
+        }
         addCategories();
         recyclerViewCategories = view.findViewById(R.id.recycler_categories);
         showCategories(view);
@@ -77,24 +101,26 @@ public class HomeFragment extends Fragment implements SelectListener {
 
     private void addCategories() {
         categories = new ArrayList<>();
-        categories.add(new CategoryRvModel(R.drawable.cardiology, "Cardiologie"));
-        categories.add(new CategoryRvModel(R.drawable.pneumology, "Pneumologie"));
-        categories.add(new CategoryRvModel(R.drawable.neurology, "Neurologie"));
-        categories.add(new CategoryRvModel(R.drawable.reumatology, "Reumatologie"));
-        categories.add(new CategoryRvModel(R.drawable.pediatry, "Pediatrie"));
-        categories.add(new CategoryRvModel(R.drawable.dermatology, "Dermatologie"));
-        categories.add(new CategoryRvModel(R.drawable.orl, "ORL"));
+        categories.add(new CategoryRvModel(R.drawable.ic_category_cardiology, "Cardiologie"));
+        categories.add(new CategoryRvModel(R.drawable.ic_category_pneumology, "Pneumologie"));
+        categories.add(new CategoryRvModel(R.drawable.ic_category_neurology, "Neurologie"));
+        categories.add(new CategoryRvModel(R.drawable.ic_category_reumatology, "Reumatologie"));
+        categories.add(new CategoryRvModel(R.drawable.ic_category_pediatry, "Pediatrie"));
+        categories.add(new CategoryRvModel(R.drawable.ic_category_dermatology, "Dermatologie"));
+        categories.add(new CategoryRvModel(R.drawable.ic_category_orl, "ORL"));
     }
 
     @Override
     public void onItemClicked(Object object) {
         CategoryRvModel category = (CategoryRvModel) object;
-//        Toast.makeText(getContext(), category.getText(), Toast.LENGTH_SHORT).show();
+        BottomNavigationBar btm = getActivity().findViewById(R.id.bottom_navigation);
+        btm.selectTab(1);
         fragment = DoctorsFragment.newInstance(category);
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.frameLayout_homePage, fragment)
                 .commit();
+
     }
 
     //==============================================================NEWS RV==============================================================

@@ -5,16 +5,25 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_title">Ai deja un\nCont activ?\nLoghează-te!</string>
-    <string name="ai_uitat_parola">Ai uitat parola?</string>
-    <string name="utilizator_nou_creeaz_un_cont">Utilizator nou? Creează un cont.</string>
-    <string name="click_inregistreaza">Click pe + și înregistrează-te.</string>
-    <string name="login_btn">AUTENTIFICARE</string>
+    <string name="login_fragment_forgot_password">Ai uitat parola?</string>
+    <string name="login_fragment_create_account">Utilizator nou?</string>
+    <string name="login_fragment_click_on_plus">Click pe + și înregistrează-te.</string>
+    <string name="login_fragment_login_button">AUTENTIFICARE</string>
     <string name="register_btn">Înregistrare</string>
     <string name="newsApi_key">168d8d94275a42d687bd81951d869389</string>
-    <string name="tv_pick_hour">Alege ora pentru programare:</string>
+    <string name="make_app_fragment_pick_hour">Alege ora pentru programare:</string>
     <string name="room_temperature_content_description">Room Temperature</string>
     <string name="temperatura_camerei">Temperatura camerei</string>
     <string name="room_temp_default">23.5</string>
     <string name="room_temp_unit">°C</string>
     <string name="room_humidity_content_description">Room Humidity</string>
+    <string name="home_fragment_card_title">STAI ACASĂ ȘI AI GRIJĂ DE TINE!</string>
+    <string name="home_fragment_card_text">Toti medicii pe care îi vei gasi sunt\nacreditati,deci nu ezita nicio secunda!\nIn plus, faciliteaza procesul \ndiagnosticarii si monitorizeaza-ti \npermanent starea!</string>
+    <string name="home_fragment_category_title">Alege categoria dorită:</string>
+    <string name="home_fragment_news_title">Titlurile zilei in domeniul sănătății în România:</string>
+    <string name="make_app_fragment_pick_day">Alege ziua pentru programare:</string>
+    <string name="make_app_fragment_make_app_button">Realizează programare</string>
+    <string name="profile_fragment_username">Nume utilizator</string>
+    <string name="profile_fragment_default_age">20</string>
+    <string name="reset_password_button">Reseteaza parola</string>
 </resources>

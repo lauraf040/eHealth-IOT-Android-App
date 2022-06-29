@@ -29,7 +29,7 @@ public class NestedHistoryRvAdapter extends RecyclerView.Adapter<NestedHistoryRv
         LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
-        View view = inflater.inflate(R.layout.rv_history_nested_item, parent, false);
+        View view = inflater.inflate(R.layout.item_nested_history, parent, false);
         //return new holder instance
         NestedHistoryRvAdapter.NestedViewHolder historyViewHolder = new NestedHistoryRvAdapter.NestedViewHolder(view);
         return historyViewHolder;

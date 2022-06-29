@@ -1,67 +1,110 @@
 package com.example.health_iot_app;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.example.health_iot_app.fragments.AppointmentsFragment;
 import com.example.health_iot_app.fragments.DoctorsFragment;
 import com.example.health_iot_app.fragments.HomeFragment;
 import com.example.health_iot_app.fragments.ProfileFragment;
 import com.example.health_iot_app.fragments.SensorsDataFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
+import com.example.health_iot_app.models.UserModel;
 
 public class HomeActivity extends AppCompatActivity {
 
+    BottomNavigationBar bottomNavigationBar;
     private Fragment currentFragment;
-    BottomNavigationView bottomNavigationView;
+
+    private SharedPreferences preferences;
+    private static final String USER_SHARED_PREF = "userSharedPref";
+    String userId;
+    private static final String USER_ID = "USER_ID";
+    UserModel loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Bundle bundle = getIntent().getExtras();
+        loggedUser = bundle.getParcelable(USER_ID);
         openDefaultFragment(savedInstanceState);
+
+
         initComponents();
     }
 
+
     private void initComponents() {
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnItemSelectedListener(changeFragmentOnItemSelectedListener());
+
+        bottomNavigationBar = findViewById(R.id.bottom_navigation);
+        setNavBar();
+
+        preferences = getSharedPreferences(USER_SHARED_PREF, MODE_PRIVATE);
+        userId = preferences.getString(USER_ID, "");
+        Toast.makeText(getApplicationContext(), loggedUser.getName(), Toast.LENGTH_SHORT).show();
     }
 
-    private NavigationBarView.OnItemSelectedListener changeFragmentOnItemSelectedListener() {
-        return new NavigationBarView.OnItemSelectedListener() {
+    private void setNavBar() {
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_menu_home, "Home"));
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.medical_icon, "Doctors"));
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_menu_appointment, "Apps"));
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_menu_profile, "Profile"));
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_menu_sensors, "Data"));
+        bottomNavigationBar.setFirstSelectedPosition(0).initialise();
+        bottomNavigationBar.setTabSelectedListener(getSelectedTabListener());
+        bottomNavigationBar
+                .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
+    }
+
+    private BottomNavigationBar.OnTabSelectedListener getSelectedTabListener() {
+        return new BottomNavigationBar.OnTabSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.home_menu_item:
-                        currentFragment = new HomeFragment();
+            public void onTabSelected(int position) {
+                switch (position) {
+                    case 0:
+                        currentFragment = HomeFragment.newInstance(loggedUser);
                         break;
-                    case R.id.doctors_menu_item:
+                    case 1:
                         currentFragment = new DoctorsFragment();
                         break;
-                    case R.id.appointments_menu_item:
+                    case 2:
+                        currentFragment = new AppointmentsFragment();
+                        break;
+                    case 3:
                         currentFragment = new ProfileFragment();
                         break;
-                    case R.id.profile_menu_item:
-                        currentFragment = new ProfileFragment();
-                        break;
-                    case R.id.sensors_menu_item:
+                    case 4:
                         currentFragment = new SensorsDataFragment();
                         break;
                 }
                 openFragment();
-                return true;
+
             }
-        };
+
+            @Override
+            public void onTabUnselected(int position) {
+
+            }
+
+            @Override
+            public void onTabReselected(int position) {
+
+            }
+        }
+
+                ;
     }
+
 
     private void openDefaultFragment(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            currentFragment = new HomeFragment();
+            currentFragment = HomeFragment.newInstance(loggedUser);
             openFragment();
         }
     }
@@ -72,4 +115,6 @@ public class HomeActivity extends AppCompatActivity {
                 .replace(R.id.frameLayout_homePage, currentFragment)
                 .commit();
     }
+
+
 }

@@ -1,6 +1,5 @@
 package com.example.health_iot_app.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.health_iot_app.HomeActivity;
 import com.example.health_iot_app.R;
 import com.example.health_iot_app.databinding.FragmentRegisterBinding;
 import com.example.health_iot_app.network.ApiClient;
@@ -33,9 +31,10 @@ public class RegisterFragment extends Fragment {
 
     private TextView tvSignin;
     private TextInputLayout tilName, tilEmail, tilAge, tilPhone, tilPassword;
-    private TextInputEditText tiedName, tiedEmail, tiedAge, tiedPhone, tiedPassword;
+    private TextInputEditText tietName, tietEmail, tietAge, tietPhone, tietPassword;
     private ImageView ivRegister;
     private Button btnRegister;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private @NonNull
     FragmentRegisterBinding registerBinding;
     Animation topAnim, bottomAnim;
@@ -64,11 +63,11 @@ public class RegisterFragment extends Fragment {
         tilPassword = registerBinding.getRoot().findViewById(R.id.til_password_register);
 
         //TIED
-        tiedName = registerBinding.getRoot().findViewById(R.id.tied_name_register);
-        tiedEmail = registerBinding.getRoot().findViewById(R.id.tied_email_register);
-        tiedAge = registerBinding.getRoot().findViewById(R.id.tied_age_register);
-        tiedPhone = registerBinding.getRoot().findViewById(R.id.tied_phone_register);
-        tiedPassword = registerBinding.getRoot().findViewById(R.id.tied_password_register);
+        tietName = registerBinding.getRoot().findViewById(R.id.tied_name_register);
+        tietEmail = registerBinding.getRoot().findViewById(R.id.tied_email_register);
+        tietAge = registerBinding.getRoot().findViewById(R.id.tied_age_register);
+        tietPhone = registerBinding.getRoot().findViewById(R.id.tied_phone_register);
+        tietPassword = registerBinding.getRoot().findViewById(R.id.tied_password_register);
 
 
         ivRegister = registerBinding.getRoot().findViewById(R.id.iv_register);
@@ -84,15 +83,16 @@ public class RegisterFragment extends Fragment {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegisterRequest registerRequest = new RegisterRequest();
-                registerRequest.setName(tiedName.getText().toString());
-                registerRequest.setEmail(tiedEmail.getText().toString());
-                registerRequest.setAge(Integer.parseInt(tiedAge.getText().toString()));
-                registerRequest.setPhone(Integer.parseInt(tiedPhone.getText().toString()));
-                registerRequest.setPassword(tiedPassword.getText().toString());
-                registerUser(registerRequest,registerBinding);
-//                Intent intent = new Intent(getActivity(), HomeActivity.class);
-//                startActivity(intent);
+                if (isValid()) {
+                    RegisterRequest registerRequest = new RegisterRequest();
+                    registerRequest.setName(tietName.getText().toString());
+                    registerRequest.setEmail(tietEmail.getText().toString());
+                    registerRequest.setAge(Integer.parseInt(tietAge.getText().toString()));
+                    registerRequest.setPhone(Integer.parseInt(tietPhone.getText().toString()));
+                    registerRequest.setPassword(tietPassword.getText().toString());
+                    registerUser(registerRequest, registerBinding);
+                }
+
             }
         };
     }
@@ -124,19 +124,23 @@ public class RegisterFragment extends Fragment {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegisterRequest registerRequest = new RegisterRequest();
-                registerRequest.setName(tiedName.getText().toString());
-                registerRequest.setEmail(tiedEmail.getText().toString());
-                registerRequest.setAge(Integer.parseInt(tiedAge.getText().toString()));
-                registerRequest.setPhone(Integer.parseInt(tiedPhone.getText().toString()));
-                registerRequest.setPassword(tiedPassword.getText().toString());
-                registerUser(registerRequest,registerBinding);
+                LoginFragment loginFragment = new LoginFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.frameLayout_loginPage, loginFragment);
+                transaction.commit();
             }
         };
     }
 
     public void registerUser(RegisterRequest registerRequest, FragmentRegisterBinding registerBinding) {
-        Call<RegisterResponse> registerResponseCall = ApiClient.getService().registerUser(registerRequest);
+        RegisterRequest req = new RegisterRequest();
+        req.setName(tietName.getText().toString());
+        req.setEmail(tietEmail.getText().toString());
+        req.setAge(Integer.parseInt(tietAge.getText().toString()));
+        req.setPhone(Integer.parseInt(tietPhone.getText().toString()));
+        req.setPassword(tietPassword.getText().toString());
+        //registerUser(req, registerBinding);
+        Call<RegisterResponse> registerResponseCall = ApiClient.getService().registerUser(req);
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
@@ -164,4 +168,42 @@ public class RegisterFragment extends Fragment {
             }
         });
     }
+
+    private boolean isValid() {
+        if (tietName.getText() == null || tietName.getText().toString().length() == 0) {
+            tietName.setError("Numele este obligatoriu!");
+            return false;
+        }
+        if (tietEmail.getText() == null || tietEmail.getText().toString().length() == 0) {
+            tietEmail.setError("Emailul este obligatoriu!");
+            return false;
+        }
+        if (!tietEmail.getText().toString().trim().matches(emailPattern)) {
+            tietEmail.setError("Format invalid pentru email!");
+            return false;
+        }
+        if (tietAge.getText() == null || tietAge.getText().toString().length() == 0) {
+            tietAge.setError("Numele este obligatoriu!");
+            return false;
+        }
+        if (Integer.parseInt(tietAge.getText().toString()) < 18) {
+            tietAge.setError("Vârsta minima este 18!");
+            return false;
+        }
+        if (tietPhone.getText() == null || tietPhone.getText().toString().length() == 0) {
+            tietPhone.setError("Numarul de telefon este obligatoriu!");
+            return false;
+        }
+        if (tietPassword.getText() == null || tietPassword.getText().toString().length() == 0) {
+            tietPassword.setError("Parola este obligatorie!");
+            return false;
+        }
+        if (tietPassword.getText().toString().trim().length() < 8) {
+            tietPassword.setError("Parola trebuie sa aiba minim 8 caractere!");
+            return false;
+        }
+        return true;
+    }
+
+
 }

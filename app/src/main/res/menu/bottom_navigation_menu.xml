@@ -3,31 +3,31 @@
     <item
         android:id="@+id/home_menu_item"
         android:enabled="true"
-        android:icon="@drawable/home_icon"
-        android:iconTint="@color/md_theme_light_primary"
+        android:icon="@drawable/ic_menu_home"
+        android:iconTint="@color/primar_color"
         android:title="Home"></item>\
     <item
         android:id="@+id/doctors_menu_item"
         android:enabled="true"
         android:icon="@drawable/medical_icon"
-        android:iconTint="@color/md_theme_light_primary"
+        android:iconTint="@color/primar_color"
         android:title="Doctors"></item>
     <item
         android:id="@+id/appointments_menu_item"
         android:enabled="true"
-        android:icon="@drawable/appointment_icon"
-        android:iconTint="@color/md_theme_light_primary"
+        android:icon="@drawable/ic_menu_appointment"
+        android:iconTint="@color/primar_color"
         android:title="App"></item>
     <item
         android:id="@+id/profile_menu_item"
         android:enabled="true"
-        android:icon="@drawable/profile_icon"
-        android:iconTint="@color/md_theme_light_primary"
+        android:icon="@drawable/ic_menu_profile"
+        android:iconTint="@color/primar_color"
         android:title="Profile"></item>
     <item
         android:id="@+id/sensors_menu_item"
         android:enabled="true"
-        android:icon="@drawable/sensors_icon"
-        android:iconTint="@color/md_theme_light_primary"
+        android:icon="@drawable/ic_menu_sensors"
+        android:iconTint="@color/primar_color"
         android:title="Data"></item>
 </menu>

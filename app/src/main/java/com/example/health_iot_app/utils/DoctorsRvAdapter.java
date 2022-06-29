@@ -36,7 +36,7 @@ public class DoctorsRvAdapter extends RecyclerView.Adapter<DoctorsRvAdapter.Doct
         LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
-        View view = inflater.inflate(R.layout.doctors_list_item, parent, false);
+        View view = inflater.inflate(R.layout.item_doctor, parent, false);
         //return new holder instance
         DoctorsRvAdapter.DoctorsRvHolder doctorsRvHolder = new DoctorsRvAdapter.DoctorsRvHolder(view, onDoctorListener);
 
@@ -106,7 +106,7 @@ public class DoctorsRvAdapter extends RecyclerView.Adapter<DoctorsRvAdapter.Doct
 
         @Override
         public void onClick(View view) {
-            onDoctorListener.onDoctorClicked(getAdapterPosition());
+            onDoctorListener.onDoctorClicked(getAbsoluteAdapterPosition());
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.health_iot_app.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,8 @@ public class DefaultDoctorDetailsFragment extends Fragment implements OnMapReady
     private TextView tvDescription, tvPhone, tvEmail, tvPrice, tvLocation;
     private ExtendedFloatingActionButton fabAppointment;
 
-    private GoogleMap map;
-    SupportMapFragment supportMapFragment;
+    //private GoogleMap map;
+
 
     public DefaultDoctorDetailsFragment() {
         // Required empty public constructor
@@ -59,10 +60,19 @@ public class DefaultDoctorDetailsFragment extends Fragment implements OnMapReady
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_default_doctor_details, container, false);
-        initComponents(view);
-        supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_google_maps);
-        supportMapFragment.getMapAsync(this);
+        View view;
+        try {
+            view = inflater.inflate(R.layout.fragment_default_doctor_details, container, false);
+            initComponents(view);
+            SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_google_maps);
+            if (supportMapFragment != null) {
+                supportMapFragment.getMapAsync(this);
+            }
+        } catch (Exception e) {
+            Log.e("default", "onCreateView", e);
+            throw e;
+        }
+
         return view;
     }
 
@@ -108,11 +118,11 @@ public class DefaultDoctorDetailsFragment extends Fragment implements OnMapReady
     //============================================MAPS=============================
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-        map = googleMap;
+        // map = googleMap;
         LatLng location = new LatLng(Double.valueOf(doctor.getLatitude()), Double.valueOf(doctor.getLongitude()));
-        map.addMarker(new MarkerOptions()
+        googleMap.addMarker(new MarkerOptions()
                 .position(location)
                 .title(doctor.getLocation()));
-        map.moveCamera(CameraUpdateFactory.newLatLng(location));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
 }

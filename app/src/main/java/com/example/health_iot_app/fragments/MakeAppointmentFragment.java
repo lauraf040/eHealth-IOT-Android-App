@@ -1,29 +1,54 @@
 package com.example.health_iot_app.fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amrdeveloper.lottiedialog.LottieDialog;
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.example.health_iot_app.R;
+import com.example.health_iot_app.models.Appointment;
 import com.example.health_iot_app.models.Doctor;
 import com.example.health_iot_app.models.DoctorAppointmentSchedule;
+import com.example.health_iot_app.models.UserModel;
+import com.example.health_iot_app.network.ApiClient;
 import com.example.health_iot_app.utils.DateConverter;
 import com.example.health_iot_app.utils.HoursRvAdapter;
+import com.example.health_iot_app.utils.SelectListener;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.harrywhewell.scrolldatepicker.DayScrollDatePicker;
 import com.harrywhewell.scrolldatepicker.OnDateSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Date;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class MakeAppointmentFragment extends Fragment {
+
+public class MakeAppointmentFragment extends Fragment implements SelectListener {
+
+    public static final String USER_ID = "USER_ID";
+    private static final String USER_SHARED_PREF = "userSharedPref";
+    private SharedPreferences preferences;
+    String patientId;
+    String appDate;
+    String time;
 
     private static final String DOCTOR_KEY = "DOCTOR_KEY";
     private DayScrollDatePicker datePicker;
@@ -32,9 +57,8 @@ public class MakeAppointmentFragment extends Fragment {
     private ArrayList<String> hoursList, freeHoursList;
     ArrayList<String> times = new ArrayList<>();
     private Doctor doctor = null;
+    ExtendedFloatingActionButton btnWantAppointment;
 
-    private String mParam1;
-    private String mParam2;
 
     public MakeAppointmentFragment() {
         // Required empty public constructor
@@ -72,7 +96,20 @@ public class MakeAppointmentFragment extends Fragment {
         datePicker.setEndDate(01, 12, 2022);
         //hours
         rvAppointmentHours = view.findViewById(R.id.hour_picker_rv);
+        preferences = getActivity().getSharedPreferences(USER_SHARED_PREF, MODE_PRIVATE);
+        patientId = preferences.getString(USER_ID, "");
 
+        btnWantAppointment = view.findViewById(R.id.btn_want_appointment);
+        btnWantAppointment.setOnClickListener(makeAppointmentClickListener());
+    }
+
+    private View.OnClickListener makeAppointmentClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAlertDialog();
+            }
+        };
     }
 
 
@@ -84,14 +121,11 @@ public class MakeAppointmentFragment extends Fragment {
             public void onDateSelected(@Nullable Date date) {
                 times = new ArrayList<>();
                 if (date != null) {
-                    Toast.makeText(getContext(),
-                            date.toString(),
-                            Toast.LENGTH_SHORT).show();
+                    appDate = DateConverter.fromDate(date);
                     if (doctor.getAppointments() != null) {
                         for (DoctorAppointmentSchedule appointment : doctor.getAppointments()) {
                             if (DateConverter.fromDate(date).equals(appointment.getDate())) {
                                 times = appointment.getTimes();
-                                break;
                             }
                         }
                         if (times != null) {
@@ -134,9 +168,148 @@ public class MakeAppointmentFragment extends Fragment {
 
     private void populateHoursRecyclerView(View view) {
 
-        hoursRvAdapter = new HoursRvAdapter(hoursList);
+        hoursRvAdapter = new HoursRvAdapter(hoursList, this);
         rvAppointmentHours.setLayoutManager(new GridLayoutManager(view.getContext(), 3));
         rvAppointmentHours.setAdapter(hoursRvAdapter);
         hoursRvAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemClicked(Object object) {
+        time = object.toString();
+    }
+
+
+    //========================================================
+    private void createAlertDialog() {
+        Button buttonYES = new Button(getContext());
+        buttonYES.setText("CONFIRM");
+        buttonYES.setTextColor(getResources().getColor(R.color.purple));
+        int btn1Color = ContextCompat.getColor(getContext(), R.color.primar_color);
+        buttonYES.setBackgroundTintList(ColorStateList.valueOf(btn1Color));
+
+        Button buttonNO = new Button(getContext());
+        buttonNO.setText("REFUZ");
+        buttonNO.setTextColor(getResources().getColor(R.color.purple));
+        buttonNO.setAllCaps(false);
+        int btn2Color = ContextCompat.getColor(getContext(), R.color.primar_color);
+        buttonNO.setBackgroundTintList(ColorStateList.valueOf(btn2Color));
+
+        LottieDialog dialog = new LottieDialog(getContext())
+                .setAnimationFromUrl("https://assets5.lottiefiles.com/packages/lf20_eIXuIz.json")
+                .setAnimationRepeatCount(LottieDialog.INFINITE)
+                .setAutoPlayAnimation(true)
+                .setTitleColor(Color.BLUE)
+                .setTitleTextSize(20)
+                .setTitle("Confirmare")
+                .setMessage("Sunteti sigur ca doriti programarea?")
+                .setMessageColor(R.color.primar_color)
+                .setDialogBackground(Color.WHITE)
+                .setCanceledOnTouchOutside(true)
+                .addActionButton(buttonYES)
+                .addActionButton(buttonNO);
+        buttonYES.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makeAppointmentOnServer(dialog);
+            }
+        });
+        buttonNO.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+        dialog.show();
+    }
+
+    private void makeAppointmentOnServer(LottieDialog dialog) {
+        Appointment appointment = new Appointment(doctor.get_id(), patientId, appDate, time);
+        Call<Appointment> makeAppointmentCall = ApiClient.getService().makeAppointment(appointment);
+        makeAppointmentCall.enqueue(new Callback<Appointment>() {
+            @Override
+            public void onResponse(Call<Appointment> call, Response<Appointment> response) {
+                if (response.isSuccessful()) {
+                    updateDoctorsFreeHours(dialog);
+
+                } else {
+                    Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Appointment> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getUser(LottieDialog dialog) {
+        ApiClient.getService().getUserById(patientId).enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                if (response.isSuccessful()) {
+                    UserModel user = response.body();
+                    updateUserPoints(dialog, user);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void updateUserPoints(LottieDialog dialog, UserModel user) {
+
+        user.setNbOfApp(user.getNbOfApp() + 1);
+        user.setPointsFromApp(user.getPointsFromApp() + 50);
+        ApiClient.getService().updateUser(patientId, user).enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getContext(), "pointsUpdated", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void updateDoctorsFreeHours(LottieDialog dialog) {
+        ArrayList<String> times = new ArrayList<>();
+        times.add(time);
+        DoctorAppointmentSchedule dateSchedule = new DoctorAppointmentSchedule(appDate, times);
+        Call<String> updateCall = ApiClient.getService().updateDoctorAppointment(doctor.get_id(), dateSchedule);
+        updateCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    getUser(dialog);
+                    Toast.makeText(getContext(), "APPOINTMENT MADE", Toast.LENGTH_SHORT).show();
+                    dialog.cancel();
+                    BottomNavigationBar btm = getActivity().findViewById(R.id.bottom_navigation);
+                    btm.selectTab(2);
+                    Fragment fragment = new AppointmentsFragment();
+                    openFragment(fragment);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void openFragment(Fragment fragment) {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameLayout_homePage, fragment)
+                .commit();
     }
 }

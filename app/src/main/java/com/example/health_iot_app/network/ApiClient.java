@@ -2,6 +2,7 @@ package com.example.health_iot_app.network;
 
 import java.util.concurrent.TimeUnit;
 
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -27,6 +28,7 @@ public class ApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
         return retrofit;
     }

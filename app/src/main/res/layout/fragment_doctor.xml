@@ -12,8 +12,8 @@
     <LinearLayout
         android:id="@+id/linear_doctor_details_top"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="#E5F8FC"
+        android:layout_height="200dp"
+        android:background="@color/light_blue"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:src="@drawable/arrow" />
+            android:src="@drawable/ic_back_arrow" />
 
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -31,7 +31,7 @@
             android:layout_height="180dp"
             android:layout_weight="1"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-            app:srcCompat="@drawable/doctor1">
+            app:srcCompat="@drawable/not_available">
 
         </com.google.android.material.imageview.ShapeableImageView>
 
@@ -49,9 +49,10 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="40dp"
-                android:fontFamily="@font/merriweathebold"
+                android:fontFamily="@font/amatic_regular"
                 android:text="DOCTOR NAME"
-                android:textSize="16dp"
+                android:textColor="@color/pink"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -61,9 +62,10 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/italianaregular"
-                android:text="Category"
-                android:textSize="15dp"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:text="CATEGORY"
+                android:textColor="@color/dark_blue"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -72,10 +74,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/italianaregular"
+                android:fontFamily="@font/josefinslab_semibold"
                 android:text="AGE"
-                android:textSize="15dp"
+                android:textColor="@color/dark_blue"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -84,32 +86,34 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/iv_doctor_details_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/rating"></com.google.android.material.imageview.ShapeableImageView>
+                    android:src="@drawable/ic_rating"></com.google.android.material.imageview.ShapeableImageView>
 
                 <TextView
                     android:id="@+id/tv_doctor_details_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:fontFamily="@font/merriweathebold"
+                    android:fontFamily="@font/josefinslab_semibold"
                     android:text="4.5 "
-                    android:textColor="@color/md_theme_light_secondary"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="14sp"
                     android:textStyle="bold"></TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/merriweathebold"
+                    android:fontFamily="@font/josefinslab_semibold"
                     android:text="Rating "
                     android:textAlignment="textStart"
-                    android:textColor="@color/md_theme_light_secondary"></TextView>
+                    android:textColor="@color/dark_blue"
+                    android:textSize="14sp"></TextView>
             </LinearLayout>
 
         </LinearLayout>
@@ -117,9 +121,9 @@
     </LinearLayout>
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="-20dp"
         android:background="@drawable/doctor_cardview"
         android:orientation="vertical">
 
@@ -128,6 +132,7 @@
             android:layout_height="match_parent">
 
             <FrameLayout
+
                 android:id="@+id/frame_layout_doctor_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"></FrameLayout>

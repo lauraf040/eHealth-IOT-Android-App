@@ -18,9 +18,11 @@ public class HoursRvAdapter extends RecyclerView.Adapter<HoursRvAdapter.HoursVie
 
     private ArrayList<String> hoursList;
     private int selectedHour = -1;
+    private SelectListener selectListener;
 
-    public HoursRvAdapter(ArrayList<String> hoursList) {
+    public HoursRvAdapter(ArrayList<String> hoursList, SelectListener selectListener) {
         this.hoursList = hoursList;
+        this.selectListener = selectListener;
     }
 
     @NonNull
@@ -30,7 +32,7 @@ public class HoursRvAdapter extends RecyclerView.Adapter<HoursRvAdapter.HoursVie
         LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
-        View itemView = inflater.inflate(R.layout.item_hours_recyclerview, parent, false);
+        View itemView = inflater.inflate(R.layout.item_hour, parent, false);
 
         //return new holder instance
         HoursViewHolder viewHolder = new HoursViewHolder(itemView);
@@ -45,8 +47,10 @@ public class HoursRvAdapter extends RecyclerView.Adapter<HoursRvAdapter.HoursVie
         holder.tvHour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                selectListener.onItemClicked(hour);
                 selectedHour = position;
                 notifyDataSetChanged();
+
             }
         });
         if (selectedHour == position) {
@@ -61,12 +65,17 @@ public class HoursRvAdapter extends RecyclerView.Adapter<HoursRvAdapter.HoursVie
         return hoursList.size();
     }
 
+
     public static class HoursViewHolder extends RecyclerView.ViewHolder {
-        TextView tvHour;
+        public TextView tvHour;
 
         public HoursViewHolder(@NonNull View itemView) {
             super(itemView);
             tvHour = itemView.findViewById(R.id.tv_item_hours_rv);
+
         }
     }
 }
+
+
+

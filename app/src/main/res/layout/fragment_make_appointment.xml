@@ -18,27 +18,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:textColor="@color/dark_blue"
+                android:id="@+id/make_appointment_pick_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:padding="8dp"
+                android:text="@string/make_app_fragment_pick_day"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.harrywhewell.scrolldatepicker.DayScrollDatePicker
                 android:id="@+id/day_date_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                app:baseColor="@color/md_theme_dark_onPrimary"
-                app:baseTextColor="#8CC0DE"
+                android:padding="5dp"
+                app:baseColor="@color/light_blue"
+                app:baseTextColor="@color/dark_blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:selectedColor="#DAEAF1"
-                app:selectedTextColor="@color/md_theme_dark_onPrimary"
+                app:layout_constraintTop_toBottomOf="@id/make_appointment_pick_day"
+                app:selectedColor="@color/pink"
+                app:selectedTextColor="@color/dark_blue"
                 app:showFullDate="true"
                 app:showTitle="true" />
 
             <TextView
-                android:id="@+id/make_appointment_tv_morning"
+                android:textColor="@color/dark_blue"
+                android:id="@+id/make_appointment_pick_hour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/tv_pick_hour"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:padding="8dp"
+                android:text="@string/make_app_fragment_pick_hour"
+                android:textSize="17sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/day_date_picker" />
@@ -47,24 +68,29 @@
                 android:id="@+id/hour_picker_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="8dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/make_appointment_tv_morning"
+                app:layout_constraintTop_toBottomOf="@id/make_appointment_pick_hour"
                 app:spanCount="3"
-                tools:listitem="@layout/item_hours_recyclerview">
+                tools:listitem="@layout/item_hour">
 
             </androidx.recyclerview.widget.RecyclerView>
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:layout_width="match_parent"
+                android:id="@+id/btn_want_appointment"
+                android:layout_width="300dp"
                 android:layout_height="match_parent"
                 android:layout_margin="12dp"
+                android:fontFamily="@font/opensans_semibold"
                 android:padding="8dp"
-                android:text="Vreau o programare!"
-                android:textColor="@color/md_theme_dark_onPrimary"
-                android:textSize="24dp"
-                android:textStyle="italic"
+                android:text="@string/make_app_fragment_make_app_button"
+                android:textColor="@color/dark_blue"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:cornerRadius="25dp"
+                android:backgroundTint="@color/pink"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

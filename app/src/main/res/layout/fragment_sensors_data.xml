@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#fff">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animationView"
@@ -32,10 +32,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:fontFamily="@font/merriweathebold"
+                android:fontFamily="@font/amatic_regular"
                 android:padding="8dp"
-                android:text="Date in timp real:"
-                android:textSize="20sp"
+                android:text="Starea ta in timp real:"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/constraint_parameters"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +54,9 @@
                     android:id="@+id/constraint_room_parameters"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="8dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="2"
@@ -62,10 +65,10 @@
 
                     <LinearLayout
                         android:id="@+id/linear_room_temperature"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:background="@drawable/cardview_layout"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_cardview_sensor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/linear_room_humidity"
                         app:layout_constraintHorizontal_weight="1"
@@ -85,10 +88,12 @@
 
                                 <ImageView
                                     android:id="@+id/iv_room_temperature"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="100dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="5dp"
                                     android:contentDescription="@string/room_temperature_content_description"
-                                    android:src="@drawable/room_temp"
+                                    android:padding="8dp"
+                                    android:src="@drawable/ic_room_temp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -98,12 +103,12 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="8dp"
-                                    android:fontFamily="@font/merriweathebold"
+                                    android:fontFamily="@font/josefinslab_semibold"
                                     android:gravity="center"
                                     android:text="@string/temperatura_camerei"
-                                    android:textColor="@color/md_theme_light_secondary"
-                                    android:textSize="18sp"
-                                    android:textStyle="italic"
+                                    android:textColor="@color/light_blue"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@id/iv_room_temperature" />
@@ -124,6 +129,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="8dp"
+                                        android:fontFamily="@font/josefinslab_semibold"
                                         android:text="@string/room_temp_default"
                                         android:textSize="20sp" />
 
@@ -131,6 +137,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="8dp"
+                                        android:fontFamily="@font/josefinslab_semibold"
                                         android:text="@string/room_temp_unit"
                                         android:textSize="20sp" />
                                 </LinearLayout>
@@ -141,10 +148,10 @@
 
                     <LinearLayout
                         android:id="@+id/linear_room_humidity"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:background="@drawable/cardview_layout"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_cardview_sensor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_weight="1"
@@ -164,10 +171,12 @@
 
                                 <ImageView
                                     android:id="@+id/iv_room_humidity"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="100dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="5dp"
                                     android:contentDescription="@string/room_humidity_content_description"
-                                    android:src="@drawable/humidity"
+                                    android:padding="5dp"
+                                    android:src="@drawable/ic_sensor_humidity"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -177,12 +186,11 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="12dp"
-                                    android:fontFamily="@font/merriweathebold"
+                                    android:fontFamily="@font/josefinslab_semibold"
                                     android:gravity="center"
-                                    android:text="Room \nHumidity"
-                                    android:textColor="@color/md_theme_light_secondary"
-                                    android:textSize="18dp"
-                                    android:textStyle="italic"
+                                    android:text="Umiditatea \ncamerei"
+                                    android:textColor="@color/light_blue"
+                                    android:textSize="13sp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@id/iv_room_humidity" />
@@ -197,18 +205,22 @@
                                     app:layout_constraintTop_toBottomOf="@id/tv_room_humidity_text">
 
                                     <TextView
+                                        android:id="@+id/tv_room_humidity_value"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="8dp"
+                                        android:fontFamily="@font/josefinslab_semibold"
                                         android:text="50.8"
-                                        android:textSize="20dp" />
+                                        android:textSize="20sp" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="8dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:fontFamily="@font/josefinslab_semibold"
                                         android:text="%"
-                                        android:textSize="20dp" />
+                                        android:textSize="20sp" />
                                 </LinearLayout>
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -221,6 +233,9 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="2"
@@ -229,10 +244,10 @@
 
                     <LinearLayout
                         android:id="@+id/linear_body_temperature"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:background="@drawable/cardview_layout"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_cardview_sensor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/linear_heart_rate"
                         app:layout_constraintHorizontal_weight="1"
@@ -252,9 +267,11 @@
 
                                 <ImageView
                                     android:id="@+id/iv_body_temperature"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="100dp"
-                                    android:src="@drawable/thermometer"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="5dp"
+                                    android:padding="8dp"
+                                    android:src="@drawable/ic_body_temp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -264,12 +281,11 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="8dp"
-                                    android:fontFamily="@font/merriweathebold"
+                                    android:fontFamily="@font/josefinslab_semibold"
                                     android:gravity="center"
-                                    android:text="Body Temperature"
-                                    android:textColor="@color/md_theme_light_secondary"
-                                    android:textSize="18dp"
-                                    android:textStyle="italic"
+                                    android:text="Temperatura corpului"
+                                    android:textColor="@color/light_blue"
+                                    android:textSize="13sp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@id/iv_body_temperature" />
@@ -285,9 +301,11 @@
                                     app:layout_constraintTop_toBottomOf="@id/tv_body_temperature_text">
 
                                     <TextView
+                                        android:id="@+id/tv_body_temp_value"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="8dp"
+                                        android:fontFamily="@font/josefinslab_semibold"
                                         android:text="32.5"
                                         android:textSize="20dp" />
 
@@ -295,6 +313,8 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="8dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:fontFamily="@font/josefinslab_semibold"
                                         android:text="°C"
                                         android:textSize="20dp" />
                                 </LinearLayout>
@@ -305,10 +325,10 @@
 
                     <LinearLayout
                         android:id="@+id/linear_heart_rate"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:background="@drawable/cardview_layout"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_cardview_sensor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_weight="1"
@@ -328,8 +348,10 @@
 
                                 <ImageView
                                     android:id="@+id/iv_heart_rate"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="100dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="5dp"
+                                    android:padding="8dp"
                                     android:src="@drawable/electrocardiogram"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -340,12 +362,11 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="12dp"
-                                    android:fontFamily="@font/merriweathebold"
+                                    android:fontFamily="@font/josefinslab_semibold"
                                     android:gravity="center"
-                                    android:text="Heart\n rate"
-                                    android:textColor="@color/md_theme_light_secondary"
-                                    android:textSize="18dp"
-                                    android:textStyle="italic"
+                                    android:text="Pulsul"
+                                    android:textColor="@color/light_blue"
+                                    android:textSize="13sp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@id/iv_heart_rate" />
@@ -363,6 +384,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="8dp"
+                                        android:fontFamily="@font/josefinslab_semibold"
                                         android:text="50.8"
                                         android:textSize="20dp" />
 
@@ -370,6 +392,8 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="8dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:fontFamily="@font/josefinslab_semibold"
                                         android:text="BPM"
                                         android:textSize="20dp" />
                                 </LinearLayout>
@@ -387,10 +411,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:fontFamily="@font/merriweathebold"
+                android:fontFamily="@font/amatic_regular"
                 android:padding="8dp"
                 android:text="Istoricul inregistrarilor"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -400,11 +424,27 @@
                 android:id="@+id/rv_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_history_text">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:fontFamily="@font/amatic_regular"
+                android:padding="8dp"
+                android:text="Nivelul energiei"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_history" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

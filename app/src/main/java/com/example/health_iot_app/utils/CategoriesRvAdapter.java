@@ -35,7 +35,7 @@ public class CategoriesRvAdapter extends RecyclerView.Adapter<CategoriesRvAdapte
         LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
-        View itemView = inflater.inflate(R.layout.category_list_item, parent, false);
+        View itemView = inflater.inflate(R.layout.item_category, parent, false);
 
         //return new holder instance
         ViewHolder viewHolder = new ViewHolder(itemView);

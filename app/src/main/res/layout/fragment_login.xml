@@ -33,15 +33,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-
                     android:fontFamily="@font/kronaoneregular"
-                    android:shadowColor="@color/md_theme_light_tertiary"
-                    android:shadowDx="2"
-                    android:shadowDy="10"
-
-                    android:shadowRadius="30"
                     android:text="@string/login_title"
-                    android:textColor="@color/md_theme_light_primary"
+                    android:textColor="@color/dark_blue"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/iv_login"
@@ -54,6 +48,7 @@
                     android:layout_height="150dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
+                    android:padding="8dp"
                     android:src="@drawable/logo_transparent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tv_login"
@@ -65,14 +60,15 @@
                 style="@style/textInputStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/loginViewsMargin"
-                app:startIconDrawable="@drawable/email_icon"
-                app:startIconTint="@color/md_theme_light_primary">
+                android:layout_marginTop="20dp"
+                app:startIconDrawable="@drawable/ic_email"
+                app:startIconTint="@color/primar_color">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tied_email_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/josefinslab_medium"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
@@ -85,14 +81,15 @@
                 style="@style/textInputStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/loginViewsMargin"
-                app:startIconDrawable="@drawable/passw_icon"
-                app:startIconTint="@color/md_theme_light_primary">
+                android:layout_marginTop="20dp"
+                app:startIconDrawable="@drawable/ic_password"
+                app:startIconTint="@color/primar_color">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tied_password_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/josefinslab_medium"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:maxLines="1" />
@@ -101,45 +98,44 @@
 
             <TextView
                 android:id="@+id/tv_forgot_password"
-                style="@style/viewParent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="10dp"
-                android:text="@string/ai_uitat_parola"
-                android:textColor="@color/md_theme_light_onPrimaryContainer"
-                android:textSize="@dimen/newsMoreTextSize" />
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/opensans_semibold"
+                android:text="@string/login_fragment_forgot_password"
+                android:textColor="@color/dark_blue"
+                android:textSize="12sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_login"
-                android:layout_width="200dp"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/bg_loginbutton"
                 android:fontFamily="@font/kronaoneregular"
-                android:padding="20dp"
-                android:text="@string/login_btn"
-                android:textColor="@color/md_theme_light_onSecondary"
-                android:textSize="15sp"
+                android:text="@string/login_fragment_login_button"
+                android:textColor="@color/white"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin"
-                android:shadowColor="@color/md_theme_light_tertiary"
-                android:shadowDx="2"
-                android:shadowDy="20"
-                android:shadowRadius="50"
-                android:text="@string/utilizator_nou_creeaz_un_cont"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/kronaoneregular"
+                android:text="@string/login_fragment_create_account"
                 android:textAlignment="center"
-                android:textColor="@color/md_theme_light_onSecondaryContainer"
-                android:textSize="17sp"
+                android:textColor="@color/dark_blue"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 style="@style/parent"
-                android:text="@string/click_inregistreaza"
+                android:text="@string/login_fragment_click_on_plus"
                 android:textAlignment="center"
-                android:textColor="@color/md_theme_light_tertiary"
+                android:textColor="@color/pink"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 

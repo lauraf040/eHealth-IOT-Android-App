@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 
 public class Doctor implements Parcelable {
+    private String _id;
     private int profilePicture;
     private String name;
     private String category;
@@ -24,9 +25,10 @@ public class Doctor implements Parcelable {
     public Doctor() {
     }
 
-    public Doctor(int profilePicture, String name, String category, int age, String phone, double rating,
+    public Doctor(String _id, int profilePicture, String name, String category, int age, String phone, double rating,
                   String description, String imageURL, String location, String email,
                   ArrayList<DoctorAppointmentSchedule> appointments, String latitude, String longitude, double price) {
+        this._id = _id;
         this.profilePicture = profilePicture;
         this.name = name;
         this.category = category;
@@ -41,6 +43,14 @@ public class Doctor implements Parcelable {
         this.latitude = latitude;
         this.longitude = longitude;
         this.price = price;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getLocation() {
@@ -165,6 +175,7 @@ public class Doctor implements Parcelable {
 
     //=================================PARCELABLE REQUIREMENTS================================
     private Doctor(Parcel source) {
+        this._id = source.readString();
         this.profilePicture = source.readInt();
         this.name = source.readString();
         this.category = source.readString();
@@ -200,6 +211,7 @@ public class Doctor implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int i) {
+        dest.writeString(_id);
         dest.writeInt(profilePicture);
         dest.writeString(name);
         dest.writeString(category);

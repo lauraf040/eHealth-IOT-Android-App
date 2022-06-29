@@ -5,11 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +35,7 @@ public class HistoryRvAdapter extends RecyclerView.Adapter<HistoryRvAdapter.Hist
         LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
-        View view = inflater.inflate(R.layout.rv_history_item, parent, false);
+        View view = inflater.inflate(R.layout.item_history, parent, false);
         //return new holder instance
         HistoryRvAdapter.HistoryViewHolder historyViewHolder = new HistoryRvAdapter.HistoryViewHolder(view);
         return historyViewHolder;
@@ -47,17 +47,18 @@ public class HistoryRvAdapter extends RecyclerView.Adapter<HistoryRvAdapter.Hist
         holder.parameterName.setText(historyModel.getParameterText());
         holder.ivParameter.setImageResource(historyModel.getImageId());
         boolean isExpandable = historyModel.isExpandable();
-        holder.relativeLayout.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
         if (isExpandable) {
+            holder.relativeLayout.setVisibility(View.VISIBLE);
             holder.arrowImage.setImageResource(R.drawable.up_arrow);
         } else {
+            holder.relativeLayout.setVisibility(View.GONE);
             holder.arrowImage.setImageResource(R.drawable.down_arrow);
         }
         NestedHistoryRvAdapter nestedAdapter = new NestedHistoryRvAdapter(list);
         holder.nestedRecyclerView.setLayoutManager(
                 new LinearLayoutManager(holder.itemView.getContext())
         );
-        holder.nestedRecyclerView.setHasFixedSize(true);
+//        holder.nestedRecyclerView.setHasFixedSize(true);
         holder.nestedRecyclerView.setAdapter(nestedAdapter);
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +77,7 @@ public class HistoryRvAdapter extends RecyclerView.Adapter<HistoryRvAdapter.Hist
 
     public class HistoryViewHolder extends RecyclerView.ViewHolder {
 
-        private ConstraintLayout constraintLayout;
+        private LinearLayout constraintLayout;
         private RelativeLayout relativeLayout;
         private TextView parameterName;
         private ImageView arrowImage;

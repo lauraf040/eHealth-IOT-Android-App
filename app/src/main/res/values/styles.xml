@@ -2,9 +2,9 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/md_theme_light_primary</item>
-        <item name="colorPrimaryDark">@color/md_theme_light_onSecondaryContainer</item>
-        <item name="colorAccent">@color/md_theme_light_tertiary</item>
+        <item name="colorPrimary">@color/primar_color</item>
+        <item name="colorPrimaryDark">@color/light_blue</item>
+        <item name="colorAccent">@color/pink</item>
         <item name="android:windowContentTransitions">true</item>
     </style>
 
@@ -19,13 +19,13 @@
     </style>
 
     <style name="viewParent.headerText">
-        <item name="android:textColor">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="android:textColor">@color/dark_blue</item>
         <item name="android:textSize">@dimen/headerTextSize</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="viewParent.headerText.NoMode">
-        <item name="android:textColor">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="android:textColor">@color/dark_blue</item>
         <item name="android:fontFamily">@font/kronaoneregular</item>
     </style>
 
@@ -35,25 +35,32 @@
     </style>
 
     <style name="textInputStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox">
-        <item name="hintTextColor">@color/md_theme_light_primary</item>
-        <item name="boxBackgroundColor">@color/md_theme_light_onPrimary</item>
+        <item name="hintTextColor">@color/primar_color</item>
+        <item name="boxBackgroundColor">@color/white</item>
         <item name="boxCornerRadiusTopEnd">20dp</item>
-        <item name="boxStrokeColor">@color/md_theme_light_primary</item>
+        <item name="boxStrokeColor">@color/primar_color</item>
+    </style>
+
+    <style name="textInputUnderline" parent="Widget.Material3.TextInputLayout.FilledBox">
+        <item name="hintTextColor">@color/primar_color</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxCornerRadiusTopEnd">20dp</item>
+        <item name="boxStrokeColor">@color/primar_color</item>
     </style>
 
     <style name="loginButton" parent="viewParent">
-        <item name="android:background">@drawable/button_background_blue</item>
-        <item name="android:textColor">@color/md_theme_light_onSecondary</item>
+        <item name="android:background">@drawable/bg_blue_button</item>
+        <item name="android:textColor">@color/dark_blue</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="spinnerHintText" parent="parent">
         <item name="android:textSize">@dimen/newsMoreTextSize</item>
-        <item name="android:textColor">@color/md_theme_light_tertiary</item>
+        <item name="android:textColor">@color/dark_blue</item>
         <item name="android:paddingLeft">5dp</item>
     </style>
 
-    <style name="roundedIv" parent="parent">
+    <style name="circularIv" parent="parent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>

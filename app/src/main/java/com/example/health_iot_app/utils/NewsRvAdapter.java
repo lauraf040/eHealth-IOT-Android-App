@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,7 +40,7 @@ public class NewsRvAdapter extends RecyclerView.Adapter<NewsRvAdapter.ViewHolder
         LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
-        View view = inflater.inflate(R.layout.news_list_item, parent, false);
+        View view = inflater.inflate(R.layout.item_news_article, parent, false);
         //return new holder instance
         NewsRvAdapter.ViewHolder newsRvHolder = new NewsRvAdapter.ViewHolder(view, onItemClickListener);
 
