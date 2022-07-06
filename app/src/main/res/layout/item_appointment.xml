@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/josefinslab_semibold"
                     android:text="Data"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="@color/primar_color"
                     android:textSize="15sp" />
 
                 <TextView
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/josefinslab_semibold"
                     android:text="Timp"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="@color/primar_color"
                     android:textSize="15sp" />
 
                 <TextView
@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/josefinslab_semibold"
                     android:text="Doctor"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="@color/primar_color"
                     android:textSize="15sp" />
 
                 <TextView
@@ -136,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/josefinslab_semibold"
                     android:text="Specializare"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="@color/primar_color"
                     android:textSize="15sp" />
 
                 <TextView
@@ -159,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/josefinslab_semibold"
                     android:text="Locatie"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="@color/primar_color"
                     android:textSize="15sp" />
 
                 <TextView
@@ -187,6 +187,7 @@
                     android:background="@drawable/appointment_buttons"
                     android:fontFamily="@font/josefinslab_semibold"
                     android:text="Anuleaza"
+                    android:textColor="@color/white"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>

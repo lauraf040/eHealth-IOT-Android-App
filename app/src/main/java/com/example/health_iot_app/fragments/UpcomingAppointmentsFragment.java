@@ -84,7 +84,6 @@ public class UpcomingAppointmentsFragment extends Fragment implements Appointmen
     private void initComponents(View view) {
 
         animationView = (LottieAnimationView) view.findViewById(R.id.animation_view_upcoming);
-        animationView.setVisibility(View.INVISIBLE);
         preferences = getActivity().getSharedPreferences(USER_SHARED_PREF, MODE_PRIVATE);
         patientId = preferences.getString(USER_ID, "");
 
@@ -103,7 +102,6 @@ public class UpcomingAppointmentsFragment extends Fragment implements Appointmen
             @Override
             public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-
                     unfilteredApp.addAll(response.body());
                     for (Appointment app :
                             unfilteredApp) {
@@ -120,8 +118,14 @@ public class UpcomingAppointmentsFragment extends Fragment implements Appointmen
                                             pair = new PairAppDoctor(app, doctor);
                                             upcomgAppList.add(pair);
                                         }
+                                        if (upcomgAppList == null) {
+                                            rvUpcomingAppointments.setVisibility(View.INVISIBLE);
+                                            animationView.setVisibility(View.VISIBLE);
+                                        }
                                         adapter.notifyDataSetChanged();
+
                                     }
+
                                 }
 
                                 @Override
@@ -129,9 +133,11 @@ public class UpcomingAppointmentsFragment extends Fragment implements Appointmen
 
                                 }
                             });
+
                         }
                     }
                 }
+
             }
 
             @Override

@@ -4,7 +4,7 @@ public class RegisterRequest {
     private String name;
     private String email;
     private int age;
-    private Integer phone;
+    private String phone;
     private String password;
 
     public String getName() {
@@ -31,11 +31,11 @@ public class RegisterRequest {
         this.age = age;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

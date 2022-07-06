@@ -51,17 +51,110 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_parameters_text">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_blood_oxygen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintBottom_toTopOf="@+id/constraint_room_parameters"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/linear_blood_oxygen"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_cardview_sensor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardview_blood_oxygen"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            app:cardCornerRadius="20dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/iv_blood_oxygen"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="5dp"
+                                    android:src="@drawable/ic_blood_oxygen"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/tv_blood_oxygen_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/josefinslab_semibold"
+                                    android:gravity="center"
+                                    android:text="Oxigen sange(SpO2)"
+                                    android:textColor="@color/light_blue"
+                                    android:textSize="13sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/iv_blood_oxygen" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="8dp"
+                                    android:orientation="horizontal"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/tv_blood_oxygen_text">
+
+                                    <TextView
+                                        android:id="@+id/tv_blood_oxygen_value"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="8dp"
+                                        android:fontFamily="@font/josefinslab_semibold"
+                                        android:text="99"
+                                        android:textSize="20dp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:fontFamily="@font/josefinslab_semibold"
+                                        android:text="%"
+                                        android:textSize="20dp" />
+                                </LinearLayout>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraint_room_parameters"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
-                    android:layout_marginBottom="8dp"
                     android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@id/constraint_body_temp_pulse"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@id/constraint_blood_oxygen">
 
                     <LinearLayout
                         android:id="@+id/linear_room_temperature"
@@ -92,7 +185,7 @@
                                     android:layout_height="40dp"
                                     android:layout_marginTop="5dp"
                                     android:contentDescription="@string/room_temperature_content_description"
-                                    android:padding="8dp"
+                                    android:padding="5dp"
                                     android:src="@drawable/ic_room_temp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -175,7 +268,7 @@
                                     android:layout_height="40dp"
                                     android:layout_marginTop="5dp"
                                     android:contentDescription="@string/room_humidity_content_description"
-                                    android:padding="5dp"
+                                    android:padding="4dp"
                                     android:src="@drawable/ic_sensor_humidity"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -231,6 +324,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_body_temp_pulse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -270,7 +364,7 @@
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:layout_marginTop="5dp"
-                                    android:padding="8dp"
+                                    android:padding="5dp"
                                     android:src="@drawable/ic_body_temp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -351,7 +445,6 @@
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:layout_marginTop="5dp"
-                                    android:padding="8dp"
                                     android:src="@drawable/electrocardiogram"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -404,6 +497,8 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
@@ -413,7 +508,7 @@
                 android:layout_margin="12dp"
                 android:fontFamily="@font/amatic_regular"
                 android:padding="8dp"
-                android:text="Istoricul inregistrarilor"
+                android:text="Priveste in trecut..."
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -439,7 +534,7 @@
                 android:layout_margin="12dp"
                 android:fontFamily="@font/amatic_regular"
                 android:padding="8dp"
-                android:text="Nivelul energiei"
+                android:text="Cum stai cu stresul?"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
 import com.example.health_iot_app.R;
 import com.example.health_iot_app.models.HistoryItemModel;
 import com.example.health_iot_app.models.NestedHistoryItemModel;
@@ -74,7 +76,16 @@ public class SensorsDataFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sensors_data, container, false);
         initComponents(view);
+        initPython();
         return view;
+    }
+
+    private void initPython() {
+        if (!Python.isStarted()) {
+            Python.start(new AndroidPlatform(getContext()));
+        }
+        Python py = Python.getInstance();
+        //Python pyObj = py.getModule("");
     }
 
     private void initComponents(View view) {

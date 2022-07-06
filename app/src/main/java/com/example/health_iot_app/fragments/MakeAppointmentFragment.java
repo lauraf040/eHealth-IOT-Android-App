@@ -101,6 +101,19 @@ public class MakeAppointmentFragment extends Fragment implements SelectListener 
 
         btnWantAppointment = view.findViewById(R.id.btn_want_appointment);
         btnWantAppointment.setOnClickListener(makeAppointmentClickListener());
+        ApiClient.getService().getDoctorById(doctor.get_id()).enqueue(new Callback<Doctor>() {
+            @Override
+            public void onResponse(Call<Doctor> call, Response<Doctor> response) {
+                if (response.isSuccessful()) {
+                    doctor = response.body();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Doctor> call, Throwable t) {
+
+            }
+        });
     }
 
     private View.OnClickListener makeAppointmentClickListener() {

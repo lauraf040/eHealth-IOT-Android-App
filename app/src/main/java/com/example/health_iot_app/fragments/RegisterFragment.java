@@ -88,7 +88,7 @@ public class RegisterFragment extends Fragment {
                     registerRequest.setName(tietName.getText().toString());
                     registerRequest.setEmail(tietEmail.getText().toString());
                     registerRequest.setAge(Integer.parseInt(tietAge.getText().toString()));
-                    registerRequest.setPhone(Integer.parseInt(tietPhone.getText().toString()));
+                    registerRequest.setPhone(tietPhone.getText().toString());
                     registerRequest.setPassword(tietPassword.getText().toString());
                     registerUser(registerRequest, registerBinding);
                 }
@@ -137,7 +137,7 @@ public class RegisterFragment extends Fragment {
         req.setName(tietName.getText().toString());
         req.setEmail(tietEmail.getText().toString());
         req.setAge(Integer.parseInt(tietAge.getText().toString()));
-        req.setPhone(Integer.parseInt(tietPhone.getText().toString()));
+        req.setPhone(tietPhone.getText().toString());
         req.setPassword(tietPassword.getText().toString());
         //registerUser(req, registerBinding);
         Call<RegisterResponse> registerResponseCall = ApiClient.getService().registerUser(req);

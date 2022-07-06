@@ -26,9 +26,10 @@
                 android:id="@+id/news_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/josefinslab_medium"
                 android:maxLines="3"
-                android:textColor="@color/light_blue"
-                android:textSize="22sp"
+                android:textColor="@color/dark_blue"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -36,9 +37,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
+                android:fontFamily="@font/josefinslab_medium"
                 android:maxLines="1"
-                android:textColor="@color/dark_blue"
-                android:textSize="18sp"
+                android:textColor="@color/light_blue"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -50,7 +52,6 @@
             android:layout_weight="1"
             android:scaleType="centerCrop"
             android:src="@drawable/not_available"
-            app:shapeAppearanceOverlay="@style/circularIv"
-            ></com.google.android.material.imageview.ShapeableImageView>
+            app:shapeAppearanceOverlay="@style/circularIv"></com.google.android.material.imageview.ShapeableImageView>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

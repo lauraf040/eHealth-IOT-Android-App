@@ -99,6 +99,7 @@ public class PastAppointmentsFragment extends Fragment implements AppointmentsRv
                     unfilteredApp.addAll(response.body());
                     for (Appointment app :
                             unfilteredApp) {
+                        doctor = null;
                         if (DateConverter.fromString(app.getAppDate()).before(new Date())) {
                             Call<Doctor> callD = ApiClient.getService().getDoctorById(app.getDoctorID());
                             callD.enqueue(new Callback<Doctor>() {
@@ -110,11 +111,15 @@ public class PastAppointmentsFragment extends Fragment implements AppointmentsRv
                                         if (app != null && doctor != null) {
                                             pair = new PairAppDoctor(app, doctor);
                                             pastAppList.add(pair);
-                                            adapter.notifyDataSetChanged();
                                         }
-
+                                        if (pastAppList == null) {
+                                            rvPastAppointments.setVisibility(View.INVISIBLE);
+                                            animationView.setVisibility(View.VISIBLE);
+                                        }
+                                        adapter.notifyDataSetChanged();
 
                                     }
+
                                 }
 
                                 @Override
@@ -122,10 +127,10 @@ public class PastAppointmentsFragment extends Fragment implements AppointmentsRv
 
                                 }
                             });
-
                         }
                     }
                 }
+
             }
 
             @Override
