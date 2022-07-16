@@ -30,6 +30,7 @@ public class ProfileFragment extends Fragment {
     private static final String USER_SHARED_PREF = "userSharedPref";
     private SharedPreferences preferences;
     String patientId;
+
     //private UserModel user;
     private TextView tvName;
     private TextView tvAge;
@@ -75,7 +76,6 @@ public class ProfileFragment extends Fragment {
     private void initComponents(View view) {
         preferences = getActivity().getSharedPreferences(USER_SHARED_PREF, MODE_PRIVATE);
         patientId = preferences.getString(USER_ID, "");
-
         tvName = view.findViewById(R.id.tv_profile_name);
         tvAge = view.findViewById(R.id.tv_profile_age);
 

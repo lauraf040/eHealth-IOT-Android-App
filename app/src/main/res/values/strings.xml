@@ -26,4 +26,20 @@
     <string name="profile_fragment_username">Nume utilizator</string>
     <string name="profile_fragment_default_age">20</string>
     <string name="reset_password_button">Reseteaza parola</string>
+    <string name="stress_q_1">In ultima luna, cat de des ai fost suparat din cauza a ceva ce s-a intamplat neasteptat?</string>
+    <string name="stress_q_2">In ultima luna, cat de des ai simtit ca nu esti capabil sa controlezi lucrurile importante din viata ta?</string>
+    <string name="stress_q_3">In ultima luna, cat de des te-ai simtit agitat si stresat?</string>
+    <string name="stress_q_4">In ultima luna, cat de des te-ai simtit increzator in abilitatea ta de a face fata problemelor personale?</string>
+    <string name="stress_q_5">In ultima luna, cat de des ai simtit ca lucrurile merg in directia potrivita?</string>
+    <string name="stress_q_6">In ultima luna, cat de des ai simtit ca nu poti face fata tuturor lucrurilor pe care le aveai de facut?</string>
+    <string name="stress_q_7">In ultima luna, cat de des ai fost capabil sa controlezi supararile din viata ta?</string>
+    <string name="stress_q_8">In ultima luna, cat de des ai simtit ca stapanesti lucrurile?</string>
+    <string name="stress_q_9">In ultima luna, cat de des ai fost enervat de lucruri ce nu erau sub controlul tau?</string>
+    <string name="stress_q_10">In ultima luna, cat de des ai simtit ca dificultatile se adunau atat de multe ca nu le poti depasi?</string>
+    <string name="btn_edit_profile">Editeaza informatii</string>
+    <string name="btn_finish_update">Finalizare editare</string>
+    <string name="dialog_confirm_appointment">Sunteti sigur ca doriti programarea?</string>
+    <string name="dialog_title_confirm">Confirmare</string>
+    <string name="dialog_confirm_btn_yes">CONFIRM</string>
+    <string name="dialog_confirm_btn_no">REFUZ</string>
 </resources>

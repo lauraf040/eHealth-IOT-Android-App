@@ -15,12 +15,12 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_profile_picture"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:elevation="15dp"
-            android:padding="2dp"
-            android:src="@drawable/profile_image"
+            android:alpha="0.6"
+            android:padding="1dp"
+            android:src="@drawable/user"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/circularIv" />
@@ -221,7 +221,7 @@
                 android:layout_gravity="end"
                 android:fontFamily="@font/opensans_semibold"
                 android:gravity="center"
-                android:text="Update profile"
+                android:text="@string/btn_edit_profile"
                 android:textSize="13sp"
                 app:icon="@drawable/ic_add" />
 
@@ -474,7 +474,7 @@
                 android:layout_gravity="end"
                 android:fontFamily="@font/opensans_semibold"
                 android:gravity="center"
-                android:text="finish update"
+                android:text="@string/btn_finish_update"
                 android:textSize="13sp"
                 android:visibility="invisible"
                 app:icon="@drawable/ic_add" />

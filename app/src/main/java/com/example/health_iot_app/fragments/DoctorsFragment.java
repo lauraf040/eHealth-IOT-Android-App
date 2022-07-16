@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -32,9 +33,12 @@ public class DoctorsFragment extends Fragment implements DoctorsRvAdapter.OnDoct
     private DoctorsRvAdapter doctorsRvAdapter;
     private List<Doctor> doctors = new ArrayList<>();
     private List<Doctor> filteredDoctors = new ArrayList<>();
+    private List<Doctor> orderedDoctors = new ArrayList<>();
     private Fragment fragment;
     private CategoryRvModel category;
     private boolean filter = false;
+    private boolean order = false;
+    private Button btnSort;
     LottieAnimationView animationView;
 
     public DoctorsFragment() {
@@ -69,6 +73,8 @@ public class DoctorsFragment extends Fragment implements DoctorsRvAdapter.OnDoct
     private void initComponents(View view) {
         doctorsRecycleView = view.findViewById(R.id.recycler_doctors);
         animationView = (LottieAnimationView) view.findViewById(R.id.animation_view_doctors);
+        btnSort = view.findViewById(R.id.btn_sort_doctors);
+        btnSort.setOnClickListener(sortDoctorsByPrice());
         if (filter) {
             fetchDoctorsByCategory();
             Log.i("rv", filteredDoctors.toString());
@@ -83,6 +89,60 @@ public class DoctorsFragment extends Fragment implements DoctorsRvAdapter.OnDoct
             doctorsRecycleView.setAdapter(doctorsRvAdapter);
         }
     }
+
+    private View.OnClickListener sortDoctorsByPrice() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (filter) {
+                    filteredDoctors = new ArrayList<>();
+                    ApiClient.getService().getFilteredAndOrderedDoctors(category.getText()).enqueue(new Callback<List<Doctor>>() {
+                        @Override
+                        public void onResponse(Call<List<Doctor>> call, Response<List<Doctor>> response) {
+                            if (response.isSuccessful() && response.body() != null) {
+                                filteredDoctors.addAll(response.body());
+                                doctorsRvAdapter.notifyDataSetChanged();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Doctor>> call, Throwable t) {
+
+                        }
+                    });
+                    setRecycler(filteredDoctors);
+                } else {
+                    doctors = new ArrayList<>();
+                    ApiClient.getService().getSortedDoctors().enqueue(new Callback<List<Doctor>>() {
+                        @Override
+                        public void onResponse(Call<List<Doctor>> call, Response<List<Doctor>> response) {
+                            if (response.isSuccessful() && response.body() != null) {
+                                doctors.addAll(response.body());
+                                doctorsRvAdapter.notifyDataSetChanged();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Doctor>> call, Throwable t) {
+
+                        }
+                    });
+                    setRecycler(doctors);
+                }
+
+            }
+
+        };
+    }
+
+    private void setRecycler(List<Doctor> orderedDoctors) {
+        doctorsRvAdapter = new DoctorsRvAdapter(orderedDoctors, this);
+        doctorsRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        doctorsRecycleView.setAdapter(doctorsRvAdapter);
+    }
+
 
     //============================LOAD DOCTORS FROM SERVER=================================
     private void fetchDoctors() {

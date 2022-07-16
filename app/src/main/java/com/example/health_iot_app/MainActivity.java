@@ -1,7 +1,5 @@
 package com.example.health_iot_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,9 +8,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
     private static int SPLASH_SCREEN_TIMER = 3000;
-    //variables
+
     Animation topAnim, bottomAnim;
     ImageView imgWelcome;
     TextView tvLogo, tvSlogan;

@@ -33,7 +33,7 @@ public class DefaultDoctorDetailsFragment extends Fragment implements OnMapReady
     private ExtendedFloatingActionButton fabAppointment;
 
     //private GoogleMap map;
-
+    private SupportMapFragment supportMapFragment;
 
     public DefaultDoctorDetailsFragment() {
         // Required empty public constructor
@@ -64,7 +64,7 @@ public class DefaultDoctorDetailsFragment extends Fragment implements OnMapReady
         try {
             view = inflater.inflate(R.layout.fragment_default_doctor_details, container, false);
             initComponents(view);
-            SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_google_maps);
+            supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_google_maps);
             if (supportMapFragment != null) {
                 supportMapFragment.getMapAsync(this);
             }

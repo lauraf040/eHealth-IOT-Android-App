@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".fragments.DoctorsFragment">
 
+    <Button
+        android:id="@+id/btn_sort_doctors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Sorteaza in functie de pretul consultatiei"
+        android:layout_margin="8dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_doctors"
         android:layout_width="match_parent"

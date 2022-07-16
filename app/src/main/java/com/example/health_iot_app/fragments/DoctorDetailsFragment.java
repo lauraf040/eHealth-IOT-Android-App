@@ -89,7 +89,6 @@ public class DoctorDetailsFragment extends Fragment {
     private void openDefaultFragment(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             currentFragment = DefaultDoctorDetailsFragment.newInstance(doctor);
-            // currentFragment = new DefaultDoctorDetailsFragment();
             openFragment();
         }
     }

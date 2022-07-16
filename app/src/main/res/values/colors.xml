@@ -7,4 +7,8 @@
     <color name="black">#000000</color>
     <color name="purple">#D3CEDF</color>
     <color name="pink">#F2D7D9</color>
+    <color name="low_stress">#83BD75</color>
+    <color name="moderate_stress">#F77E21</color>
+    <color name="fine_energy">#E8AA42</color>
+    <color name="high_stress">#B22727</color>
 </resources>

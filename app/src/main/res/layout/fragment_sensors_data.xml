@@ -12,7 +12,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="#fff">
 
             <com.airbnb.lottie.LottieAnimationView
@@ -474,6 +474,7 @@
                                     app:layout_constraintTop_toBottomOf="@id/tv_heart_rate_text">
 
                                     <TextView
+                                        android:id="@+id/tv_pulse_value"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="8dp"
@@ -529,17 +530,170 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
+                android:id="@+id/tv_stress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
+                android:background="@drawable/tab_indicator"
                 android:fontFamily="@font/amatic_regular"
+                android:gravity="center"
                 android:padding="8dp"
-                android:text="Cum stai cu stresul?"
+                android:text="Cum iti este nivelul de stres?"
+                android:textColor="@color/pink"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_history" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_stress_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:elevation="10dp"
+
+                android:padding="12dp"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_stress">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/pink"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|center"
+                        android:fontFamily="@font/amatic_regular"
+                        android:text="Nivel general de stres"
+                        android:textColor="@color/primar_color"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <com.ramijemli.percentagechartview.PercentageChartView
+                        android:id="@+id/percentage_chart_stress"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
+                        android:layout_gravity="center"
+                        app:pcv_animDuration="800"
+                        app:pcv_animInterpolator="bounce"
+                        app:pcv_backgroundColor="@color/primar_color"
+                        app:pcv_backgroundOffset="30dp"
+                        app:pcv_mode="fill"
+                        app:pcv_progress="0"
+                        app:pcv_startAngle="90"
+                        app:pcv_textSize="30sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_semibold"
+                            android:text="SCOR PSS: "
+                            android:textColor="@color/primar_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_stress_score"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="@font/kronaoneregular"
+                            android:text="NIVEL STRES"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/energy_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:fontFamily="@font/amatic_regular"
+                android:padding="8dp"
+                android:text="Cat de incarcata iti este bateria corpului?"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_stress_level" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:elevation="10dp"
+                android:padding="12dp"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/energy_title">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/primar_color">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animation_battery"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/recharge" />
+
+                    <com.ramijemli.percentagechartview.PercentageChartView
+                        android:id="@+id/percentage_chart_battery"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
+                        android:layout_gravity="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/animation_battery"
+                        app:pcv_animDuration="800"
+                        app:pcv_animInterpolator="bounce"
+                        app:pcv_backgroundBarColor="@color/dark_blue"
+                        app:pcv_backgroundBarThickness="30dp"
+                        app:pcv_mode="ring"
+                        app:pcv_orientation="clockwise"
+                        app:pcv_progress="70"
+                        app:pcv_progressBarStyle="round"
+                        app:pcv_progressBarThickness="15dp"
+                        app:pcv_startAngle="90"
+                        app:pcv_textColor="@color/purple"
+                        app:pcv_textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/tv_energy_qualification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="EXCELLENT"
+                        android:textSize="30sp"
+                        android:fontFamily="@font/josefinslab_semibold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/percentage_chart_battery" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

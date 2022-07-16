@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment implements SelectListener {
 
-    public static final String ARTICLE_KEY = "ARTICLE_KEY";
+
     private static final String USER_ID = "USER_ID";
 
     private RecyclerView recyclerViewCategories, newsRecyclerView;
@@ -87,8 +87,9 @@ public class HomeFragment extends Fragment implements SelectListener {
         showCategories(view);
         //NEWS RECYCLER VIEW
         newsRecyclerView = view.findViewById(R.id.recycler_news);
-        showNews(view);
+
         fetchNews();
+        showNews(view);
     }
 
 
@@ -132,17 +133,6 @@ public class HomeFragment extends Fragment implements SelectListener {
 
     }
 
-//    private void setOnClickListener() {
-//        clickListener = new NewsRvAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-//                Intent intent = new Intent(getActivity(), NewsActivity.class);
-//                intent.putExtra(ARTICLE_KEY, articles.get(position).getUrl());
-//                startActivity(intent);
-//            }
-//        };
-//    }
-
     private void fetchNews() {
         NewsApiClient.getService().fetchNews().enqueue(new Callback<NewsApiResponse>() {
             @Override
@@ -150,8 +140,9 @@ public class HomeFragment extends Fragment implements SelectListener {
                 if (!response.isSuccessful()) {
                     Toast.makeText(getContext(),
                             "Error fetching news",
-                            Toast.LENGTH_LONG);
+                            Toast.LENGTH_LONG).show();
                 }
+                assert response.body() != null;
                 articles.addAll(response.body().getArticles());
                 newsRvAdapter.notifyDataSetChanged();
             }
@@ -163,11 +154,4 @@ public class HomeFragment extends Fragment implements SelectListener {
         });
     }
 
-
-//    @Override
-//    public void (Article article) {
-//        Intent intent = new Intent(getActivity(), NewsActivity.class);
-//        intent.putExtra(ARTICLE_KEY, article.getUrl());
-//        startActivity(intent);
-//    }
 }

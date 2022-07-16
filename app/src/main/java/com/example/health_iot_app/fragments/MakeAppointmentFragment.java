@@ -34,6 +34,7 @@ import com.harrywhewell.scrolldatepicker.DayScrollDatePicker;
 import com.harrywhewell.scrolldatepicker.OnDateSelectedListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import retrofit2.Call;
@@ -92,7 +93,12 @@ public class MakeAppointmentFragment extends Fragment implements SelectListener 
 
     private void initComponents(View view) {
         datePicker = (DayScrollDatePicker) view.findViewById(R.id.day_date_picker);
-        datePicker.setStartDate(01, 07, 2022);
+        Date today = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH);
+        datePicker.setStartDate(day - 1, month + 1, 2022);
         datePicker.setEndDate(01, 12, 2022);
         //hours
         rvAppointmentHours = view.findViewById(R.id.hour_picker_rv);
@@ -120,7 +126,13 @@ public class MakeAppointmentFragment extends Fragment implements SelectListener 
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createAlertDialog();
+                if (appDate != null && patientId != null && time != null) {
+                    createAlertDialog();
+                } else {
+                    Toast.makeText(getContext(), "Selectati ziua si ora!", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         };
     }
@@ -134,22 +146,29 @@ public class MakeAppointmentFragment extends Fragment implements SelectListener 
             public void onDateSelected(@Nullable Date date) {
                 times = new ArrayList<>();
                 if (date != null) {
-                    appDate = DateConverter.fromDate(date);
-                    if (doctor.getAppointments() != null) {
-                        for (DoctorAppointmentSchedule appointment : doctor.getAppointments()) {
-                            if (DateConverter.fromDate(date).equals(appointment.getDate())) {
-                                times = appointment.getTimes();
+                    if (date.before(new Date())) {
+                        times = null;
+                        Toast.makeText(getContext(), "Data programarii trebuie sa fie ulterioara datei curente!", Toast.LENGTH_SHORT).show();
+                        btnWantAppointment.setEnabled(false);
+                    } else {
+                        btnWantAppointment.setEnabled(true);
+                        appDate = DateConverter.fromDate(date);
+                        if (doctor.getAppointments() != null) {
+                            for (DoctorAppointmentSchedule appointment : doctor.getAppointments()) {
+                                if (DateConverter.fromDate(date).equals(appointment.getDate())) {
+                                    times = appointment.getTimes();
+                                }
                             }
-                        }
-                        if (times != null) {
-                            addHours();
-                            for (String time : times) {
-                                hoursList.remove(time);
+                            if (times != null) {
+                                addHours();
+                                for (String time : times) {
+                                    hoursList.remove(time);
+                                }
+                                populateHoursRecyclerView(view);
+                            } else {
+                                addHours();
+                                populateHoursRecyclerView(view);
                             }
-                            populateHoursRecyclerView(view);
-                        } else {
-                            addHours();
-                            populateHoursRecyclerView(view);
                         }
                     }
                 }
@@ -196,13 +215,13 @@ public class MakeAppointmentFragment extends Fragment implements SelectListener 
     //========================================================
     private void createAlertDialog() {
         Button buttonYES = new Button(getContext());
-        buttonYES.setText("CONFIRM");
+        buttonYES.setText(R.string.dialog_confirm_btn_yes);
         buttonYES.setTextColor(getResources().getColor(R.color.purple));
         int btn1Color = ContextCompat.getColor(getContext(), R.color.primar_color);
         buttonYES.setBackgroundTintList(ColorStateList.valueOf(btn1Color));
 
         Button buttonNO = new Button(getContext());
-        buttonNO.setText("REFUZ");
+        buttonNO.setText(R.string.dialog_confirm_btn_no);
         buttonNO.setTextColor(getResources().getColor(R.color.purple));
         buttonNO.setAllCaps(false);
         int btn2Color = ContextCompat.getColor(getContext(), R.color.primar_color);
@@ -214,8 +233,8 @@ public class MakeAppointmentFragment extends Fragment implements SelectListener 
                 .setAutoPlayAnimation(true)
                 .setTitleColor(Color.BLUE)
                 .setTitleTextSize(20)
-                .setTitle("Confirmare")
-                .setMessage("Sunteti sigur ca doriti programarea?")
+                .setTitle(getString(R.string.dialog_title_confirm))
+                .setMessage(getString(R.string.dialog_confirm_appointment))
                 .setMessageColor(R.color.primar_color)
                 .setDialogBackground(Color.WHITE)
                 .setCanceledOnTouchOutside(true)
@@ -237,6 +256,7 @@ public class MakeAppointmentFragment extends Fragment implements SelectListener 
     }
 
     private void makeAppointmentOnServer(LottieDialog dialog) {
+
         Appointment appointment = new Appointment(doctor.get_id(), patientId, appDate, time);
         Call<Appointment> makeAppointmentCall = ApiClient.getService().makeAppointment(appointment);
         makeAppointmentCall.enqueue(new Callback<Appointment>() {
@@ -255,6 +275,7 @@ public class MakeAppointmentFragment extends Fragment implements SelectListener 
 
             }
         });
+
     }
 
     private void getUser(LottieDialog dialog) {
@@ -282,7 +303,7 @@ public class MakeAppointmentFragment extends Fragment implements SelectListener 
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), "pointsUpdated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Puncte adaugate cu succes!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -303,7 +324,6 @@ public class MakeAppointmentFragment extends Fragment implements SelectListener 
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     getUser(dialog);
-                    Toast.makeText(getContext(), "APPOINTMENT MADE", Toast.LENGTH_SHORT).show();
                     dialog.cancel();
                     BottomNavigationBar btm = getActivity().findViewById(R.id.bottom_navigation);
                     btm.selectTab(2);

@@ -42,6 +42,12 @@ public interface ApiService {
     @GET("doctors/filteredDoctor")
     Call<List<Doctor>> getDoctorsByCategory(@Query("category") String category);
 
+    @GET("doctors/orderedDoctor")
+    Call<List<Doctor>> getSortedDoctors();
+
+    @GET("doctors/filteredAndOrderedDoctor")
+    Call<List<Doctor>> getFilteredAndOrderedDoctors(@Query("category") String category);
+
     @PUT("doctors/{id}")
     Call<String> updateDoctorAppointment(@Path("id") String doctorsId, @Body DoctorAppointmentSchedule dateSchedule);
 
@@ -59,6 +65,12 @@ public interface ApiService {
 
     @GET("arduino/getLastTenRoomTempData")
     Observable<List<SensorData.SensorRoomTemperatureData>> getLastTenRoomTempData();
+
+    @GET("arduino/getLastTenPulseData")
+    Observable<List<SensorData.SensorPulseData>> getLastTenPulseData();
+
+    @GET("arduino/getLastTenBloodOxygenData")
+    Observable<List<SensorData.SensorBloodOxygenData>> getLastTenBloodOxygenData();
 
     @POST("appointments/newApp")
     Call<Appointment> makeAppointment(@Body Appointment appointment);

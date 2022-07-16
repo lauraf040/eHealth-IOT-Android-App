@@ -89,6 +89,7 @@ public class LoginFragment extends Fragment {
         initAnimations();
     }
 
+    //==========================CHANGE PASSWORD=====================
     private View.OnClickListener forgotPasswordClickListener() {
         return new View.OnClickListener() {
             @Override
@@ -99,7 +100,6 @@ public class LoginFragment extends Fragment {
     }
 
     private void showGetEmailAlertDialog() {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         View view = getLayoutInflater().inflate(R.layout.get_email_reset_password, null);
         MaterialButton button = view.findViewById(R.id.btn_check_email);
@@ -111,7 +111,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 String email = tietEmail.getText().toString();
                 JsonObject object = new JsonObject();
-                object.addProperty("email",email);
+                object.addProperty("email", email);
                 ApiClient.getService().checkEmailForReset(object).enqueue(new Callback<UserModel>() {
                     @Override
                     public void onResponse(Call<UserModel> call, Response<UserModel> response) {
@@ -138,34 +138,41 @@ public class LoginFragment extends Fragment {
         View view = getLayoutInflater().inflate(R.layout.reset_password, null);
         MaterialButton button = view.findViewById(R.id.btn_reset_password);
         TextInputEditText tietNewPass = view.findViewById(R.id.tiet_new_pass);
-        TextInputEditText tietNewPassConfirm = view.findViewById(R.id.tiet_new_pass);
+        TextInputEditText tietNewPassConfirm = view.findViewById(R.id.tiet_new_pass_confirm);
         builder.setView(view);
         AlertDialog dialog2 = builder.create();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String password = tietNewPass.getText().toString();
-                JsonObject object = new JsonObject();
-                object.addProperty("password",password);
-                ApiClient.getService().resetPassword(user.get_id(),object).enqueue(new Callback<UserModel>() {
-                    @Override
-                    public void onResponse(Call<UserModel> call, Response<UserModel> response) {
-                        if (response.isSuccessful()) {
-                            UserModel user = response.body();
-                            dialog2.dismiss();
+                String confirmP = tietNewPassConfirm.getText().toString();
+                if (password.equals(confirmP)) {
+                    JsonObject object = new JsonObject();
+                    object.addProperty("password", password);
+                    ApiClient.getService().resetPassword(user.get_id(), object).enqueue(new Callback<UserModel>() {
+                        @Override
+                        public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                            if (response.isSuccessful()) {
+                                UserModel user = response.body();
+                                dialog2.dismiss();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<UserModel> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<UserModel> call, Throwable t) {
 
-                    }
-                });
+                        }
+                    });
+                } else {
+                    tietNewPassConfirm.setError("Cele doua parole nu corespund!");
+                    return;
+                }
 
             }
         });
         dialog2.show();
     }
+
 
     private View.OnClickListener openHomeActivityAfterLoginListener(FragmentLoginBinding loginBinding) {
         return new View.OnClickListener() {
@@ -235,9 +242,15 @@ public class LoginFragment extends Fragment {
                     startActivity(intent);
 
                 } else {
-                    String message = "Unable to login user";
-                    Toast.makeText(loginBinding.getRoot().getContext(),
-                            message, Toast.LENGTH_LONG).show();
+                    int code = response.code();
+                    if (code == 400) {
+                        Toast.makeText(loginBinding.getRoot().getContext(),
+                                "EMAIL GRESIT", Toast.LENGTH_LONG).show();
+                    } else if (code == 401) {
+                        Toast.makeText(loginBinding.getRoot().getContext(),
+                                "PAROLA GRESITA", Toast.LENGTH_LONG).show();
+                    }
+
                 }
             }
 

@@ -92,54 +92,61 @@ public class PastAppointmentsFragment extends Fragment implements AppointmentsRv
     }
 
     private void fetchAppointments() {
+
         ApiClient.getService().getAppointments(patientId).enqueue(new Callback<List<Appointment>>() {
             @Override
             public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
                 if (response.isSuccessful()) {
+                    boolean flag = false;
                     unfilteredApp.addAll(response.body());
+                    if (unfilteredApp.isEmpty()) {
+                        rvPastAppointments.setVisibility(View.GONE);
+                        animationView.setVisibility(View.VISIBLE);
+                    }
                     for (Appointment app :
                             unfilteredApp) {
                         doctor = null;
                         if (DateConverter.fromString(app.getAppDate()).before(new Date())) {
-                            Call<Doctor> callD = ApiClient.getService().getDoctorById(app.getDoctorID());
-                            callD.enqueue(new Callback<Doctor>() {
-                                @Override
-                                public void onResponse(Call<Doctor> call, Response<Doctor> response) {
-                                    PairAppDoctor pair = null;
-                                    if (response.isSuccessful() && response.body() != null) {
-                                        doctor = response.body();
-                                        if (app != null && doctor != null) {
-                                            pair = new PairAppDoctor(app, doctor);
-                                            pastAppList.add(pair);
+                            flag = true;
+                            ApiClient.getService().getDoctorById(app.getDoctorID())
+                                    .enqueue(new Callback<Doctor>() {
+                                        @Override
+                                        public void onResponse(Call<Doctor> call, Response<Doctor> response) {
+                                            PairAppDoctor pair = null;
+                                            if (response.isSuccessful()) {
+                                                doctor = response.body();
+                                                if (app != null && doctor != null) {
+                                                    pair = new PairAppDoctor(app, doctor);
+                                                    pastAppList.add(pair);
+                                                }
+                                                adapter.notifyDataSetChanged();
+
+                                            }
+
                                         }
-                                        if (pastAppList == null) {
-                                            rvPastAppointments.setVisibility(View.INVISIBLE);
-                                            animationView.setVisibility(View.VISIBLE);
+
+                                        @Override
+                                        public void onFailure(Call<Doctor> call, Throwable t) {
+
                                         }
-                                        adapter.notifyDataSetChanged();
-
-                                    }
-
-                                }
-
-                                @Override
-                                public void onFailure(Call<Doctor> call, Throwable t) {
-
-                                }
-                            });
+                                    });
+                        }
+                        if (!flag) {
+                            rvPastAppointments.setVisibility(View.GONE);
+                            animationView.setVisibility(View.VISIBLE);
                         }
                     }
+
                 }
 
             }
 
             @Override
             public void onFailure(Call<List<Appointment>> call, Throwable t) {
-                Toast.makeText(getContext(), "ERROR GETTINg APPS", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "ERROR GETTING APPOINTMENTS", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 
     @Override
     public void onAppointmentClicked(int position) {

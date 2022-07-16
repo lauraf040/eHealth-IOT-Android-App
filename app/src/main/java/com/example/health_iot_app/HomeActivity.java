@@ -2,7 +2,6 @@ package com.example.health_iot_app;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -34,8 +33,6 @@ public class HomeActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         loggedUser = bundle.getParcelable(USER_ID);
         openDefaultFragment(savedInstanceState);
-
-
         initComponents();
     }
 
@@ -47,7 +44,6 @@ public class HomeActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences(USER_SHARED_PREF, MODE_PRIVATE);
         userId = preferences.getString(USER_ID, "");
-        Toast.makeText(getApplicationContext(), loggedUser.getName(), Toast.LENGTH_SHORT).show();
     }
 
     private void setNavBar() {

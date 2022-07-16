@@ -84,6 +84,7 @@ public class UpcomingAppointmentsFragment extends Fragment implements Appointmen
     private void initComponents(View view) {
 
         animationView = (LottieAnimationView) view.findViewById(R.id.animation_view_upcoming);
+        animationView.setVisibility(View.GONE);
         preferences = getActivity().getSharedPreferences(USER_SHARED_PREF, MODE_PRIVATE);
         patientId = preferences.getString(USER_ID, "");
 
@@ -102,40 +103,39 @@ public class UpcomingAppointmentsFragment extends Fragment implements Appointmen
             @Override
             public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    if (response.body().isEmpty()) {
+                        rvUpcomingAppointments.setVisibility(View.GONE);
+                        animationView.setVisibility(View.VISIBLE);
+                    }
                     unfilteredApp.addAll(response.body());
                     for (Appointment app :
                             unfilteredApp) {
                         doctor = null;
                         if (DateConverter.fromString(app.getAppDate()).after(new Date())) {
-                            Call<Doctor> callD = ApiClient.getService().getDoctorById(app.getDoctorID());
-                            callD.enqueue(new Callback<Doctor>() {
-                                @Override
-                                public void onResponse(Call<Doctor> call, Response<Doctor> response) {
-                                    PairAppDoctor pair = null;
-                                    if (response.isSuccessful()) {
-                                        doctor = response.body();
-                                        if (app != null && doctor != null) {
-                                            pair = new PairAppDoctor(app, doctor);
-                                            upcomgAppList.add(pair);
+                            ApiClient.getService().getDoctorById(app.getDoctorID())
+                                    .enqueue(new Callback<Doctor>() {
+                                        @Override
+                                        public void onResponse(Call<Doctor> call, Response<Doctor> response) {
+                                            PairAppDoctor pair = null;
+                                            if (response.isSuccessful()) {
+                                                doctor = response.body();
+                                                if (app != null && doctor != null) {
+                                                    pair = new PairAppDoctor(app, doctor);
+                                                    upcomgAppList.add(pair);
+                                                }
+                                                adapter.notifyDataSetChanged();
+                                            }
+
                                         }
-                                        if (upcomgAppList == null) {
-                                            rvUpcomingAppointments.setVisibility(View.INVISIBLE);
-                                            animationView.setVisibility(View.VISIBLE);
+
+                                        @Override
+                                        public void onFailure(Call<Doctor> call, Throwable t) {
+                                            Toast.makeText(getContext(), "Error: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                                         }
-                                        adapter.notifyDataSetChanged();
-
-                                    }
-
-                                }
-
-                                @Override
-                                public void onFailure(Call<Doctor> call, Throwable t) {
-
-                                }
-                            });
-
+                                    });
                         }
                     }
+
                 }
 
             }
@@ -193,7 +193,6 @@ public class UpcomingAppointmentsFragment extends Fragment implements Appointmen
         });
         dialog.show();
 
-        Toast.makeText(getContext(), app.getAppDate(), Toast.LENGTH_SHORT).show();
     }
 
 

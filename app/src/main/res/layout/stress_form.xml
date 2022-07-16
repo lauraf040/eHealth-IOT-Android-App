@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/stress_scale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/opensans_semibold"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="0 = Niciodata, 1 = Aproape niciodata, 2 = Uneori, 3 = Destul de des, 4 = Foarte des"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/stress_q_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_blue_button"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:gravity="center"
+                android:text="@string/stress_q_1"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_scale" />
+
+            <RadioGroup
+                android:id="@+id/stress_rg_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:weightSum="5"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_q_1">
+
+                <RadioButton
+                    android:id="@+id/rb_0_q_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="0" />
+
+                <RadioButton
+                    android:id="@+id/rb_1_q_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/rb_2_q_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_3_q_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_4_q_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="4" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/stress_q_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_blue_button"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:gravity="center"
+                android:text="@string/stress_q_2"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_rg_1" />
+
+            <RadioGroup
+                android:id="@+id/stress_rg_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_q_2">
+
+                <RadioButton
+                    android:id="@+id/rb_0_q_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="0" />
+
+                <RadioButton
+                    android:id="@+id/rb_1_q_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/rb_2_q_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_3_q_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_4_q_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="4" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/stress_q_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_blue_button"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:gravity="center"
+                android:text="@string/stress_q_3"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_rg_2" />
+
+            <RadioGroup
+                android:id="@+id/stress_rg_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_q_3">
+
+                <RadioButton
+                    android:id="@+id/rb_0_q_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="0" />
+
+                <RadioButton
+                    android:id="@+id/rb_1_q_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/rb_2_q_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_3_q_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_4_q_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="4" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/stress_q_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_blue_button"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:gravity="center"
+                android:text="@string/stress_q_4"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_rg_3" />
+
+            <RadioGroup
+                android:id="@+id/stress_rg_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_q_4">
+
+                <RadioButton
+                    android:id="@+id/rb_0_q_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="0" />
+
+                <RadioButton
+                    android:id="@+id/rb_1_q_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/rb_2_q_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_3_q_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_4_q_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="4" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/stress_q_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_blue_button"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:gravity="center"
+                android:text="@string/stress_q_5"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_rg_4" />
+
+            <RadioGroup
+                android:id="@+id/stress_rg_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_q_5">
+
+                <RadioButton
+                    android:id="@+id/rb_0_q_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="0" />
+
+                <RadioButton
+                    android:id="@+id/rb_1_q_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/rb_2_q_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_3_q_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_4_q_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="4" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/stress_q_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_blue_button"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:gravity="center"
+                android:text="@string/stress_q_6"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_rg_5" />
+
+            <RadioGroup
+                android:id="@+id/stress_rg_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_q_6">
+
+                <RadioButton
+                    android:id="@+id/rb_0_q_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="0" />
+
+                <RadioButton
+                    android:id="@+id/rb_1_q_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/rb_2_q_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_3_q_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_4_q_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="4" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/stress_q_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_blue_button"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:gravity="center"
+                android:text="@string/stress_q_7"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_rg_6" />
+
+            <RadioGroup
+                android:id="@+id/stress_rg_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_q_7">
+
+                <RadioButton
+                    android:id="@+id/rb_0_q_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="0" />
+
+                <RadioButton
+                    android:id="@+id/rb_1_q_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/rb_2_q_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_3_q_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_4_q_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="4" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/stress_q_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_blue_button"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:gravity="center"
+                android:text="@string/stress_q_8"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_rg_7" />
+
+            <RadioGroup
+                android:id="@+id/stress_rg_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_q_8">
+
+                <RadioButton
+                    android:id="@+id/rb_0_q_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="0" />
+
+                <RadioButton
+                    android:id="@+id/rb_1_q_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/rb_2_q_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_3_q_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_4_q_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="4" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/stress_q_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_blue_button"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:gravity="center"
+                android:text="@string/stress_q_9"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_rg_8" />
+
+            <RadioGroup
+                android:id="@+id/stress_rg_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_q_9">
+
+                <RadioButton
+                    android:id="@+id/rb_0_q_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="0" />
+
+                <RadioButton
+                    android:id="@+id/rb_1_q_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/rb_2_q_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_3_q_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_4_q_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="4" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/stress_q_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_blue_button"
+                android:fontFamily="@font/josefinslab_semibold"
+                android:gravity="center"
+                android:text="@string/stress_q_10"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_rg_9" />
+
+            <RadioGroup
+                android:id="@+id/stress_rg_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_q_10">
+
+                <RadioButton
+                    android:id="@+id/rb_0_q_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="0" />
+
+                <RadioButton
+                    android:id="@+id/rb_1_q_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/rb_2_q_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_3_q_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_4_q_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="4" />
+            </RadioGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_get_stress_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/opensans_semibold"
+                android:text="Calculeaza nivel stres"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stress_rg_10" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.cardview.widget.CardView>

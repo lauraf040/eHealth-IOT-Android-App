@@ -4,11 +4,31 @@ public class SensorData {
     private String bodyTemp;
     private String roomTemp;
     private String humidity;
+    private String heartRate;
+    private String bloodOxygen;
 
-    public SensorData(String bodyTemp, String roomTemp, String humidity) {
+    public SensorData(String bodyTemp, String roomTemp, String humidity, String heartRate, String bloodOxygen) {
         this.bodyTemp = bodyTemp;
         this.roomTemp = roomTemp;
         this.humidity = humidity;
+        this.heartRate = heartRate;
+        this.bloodOxygen = bloodOxygen;
+    }
+
+    public String getHeartRate() {
+        return heartRate;
+    }
+
+    public void setHeartRate(String heartRate) {
+        this.heartRate = heartRate;
+    }
+
+    public String getBloodOxygen() {
+        return bloodOxygen;
+    }
+
+    public void setBloodOxygen(String bloodOxygen) {
+        this.bloodOxygen = bloodOxygen;
     }
 
     public String getBodyTemp() {
@@ -50,7 +70,8 @@ public class SensorData {
             this.humidity = humidity;
         }
     }
-    public class SensorBodyTemperatureData{
+
+    public class SensorBodyTemperatureData {
         private String bodyTemp;
 
         public SensorBodyTemperatureData(String bodyTemp) {
@@ -65,7 +86,8 @@ public class SensorData {
             this.bodyTemp = bodyTemp;
         }
     }
-    public class SensorRoomTemperatureData{
+
+    public class SensorRoomTemperatureData {
         private String roomTemp;
 
         public SensorRoomTemperatureData(String roomTemp) {
@@ -81,4 +103,35 @@ public class SensorData {
         }
     }
 
+    public class SensorPulseData {
+        private String heartRate;
+
+        public SensorPulseData(String heartRate) {
+            this.heartRate = heartRate;
+        }
+
+        public String getHeartRate() {
+            return heartRate;
+        }
+
+        public void setHeartRate(String heartRate) {
+            this.heartRate = heartRate;
+        }
+    }
+
+    public class SensorBloodOxygenData {
+        private String bloodOxygen;
+
+        public SensorBloodOxygenData(String bloodOxygen) {
+            this.bloodOxygen = bloodOxygen;
+        }
+
+        public String getBloodOxygen() {
+            return bloodOxygen;
+        }
+
+        public void setBloodOxygen(String bloodOxygen) {
+            this.bloodOxygen = bloodOxygen;
+        }
+    }
 }
